@@ -96,13 +96,15 @@ public class LandingPage extends BasicPageObject  {
 		getElement(btnSearch).click();	
 	}
 	
-	public boolean isUserFound() throws Exception {
+	public boolean isUserNotFound() throws Exception {
 		flag = false;
 		logInstruction("Validating IS Home Page");
 		try {
 			List<WebElement> found = driver.findElements(getBy(UIType.Css,strBtnConfirmarionNoUser));
 			if (found.size() > 0) {
 				getElement(btnConfirmarionNoUser).click();
+				flag = true;
+				System.out.println("----------User not found-------");
 			}
 		} catch (Exception e) {
 			logInstruction("No user found'"
@@ -111,6 +113,7 @@ public class LandingPage extends BasicPageObject  {
 					"No User Found"
 							+ e.getLocalizedMessage());
 		}
+		System.out.println("-------------flag is"+flag);
 		return flag;
 	}
 
