@@ -114,8 +114,9 @@ public class LandingPage extends BasicPageObject  {
 		return flag;
 	}
 
-	public void clickDelete(){
+	public void clickDelete() throws InterruptedException{
 		getElement(btnDelete).click();	
+		Thread.sleep(3000);
 		getElement(btnConfirmarionYes).click();	
 
 	}
