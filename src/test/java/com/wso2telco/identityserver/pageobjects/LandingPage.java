@@ -104,7 +104,6 @@ public class LandingPage extends BasicPageObject  {
 			if (found.size() > 0) {
 				getElement(btnConfirmarionNoUser).click();
 				flag = true;
-				System.out.println("----------User not found-------");
 			}
 		} catch (Exception e) {
 			logInstruction("No user found'"
@@ -113,13 +112,11 @@ public class LandingPage extends BasicPageObject  {
 					"No User Found"
 							+ e.getLocalizedMessage());
 		}
-		System.out.println("-------------flag is"+flag);
 		return flag;
 	}
 
 	public void clickDelete() throws InterruptedException{
 		getElement(btnDelete).click();	
-		Thread.sleep(3000);
 		getElement(btnConfirmarionYes).click();	
 
 	}
