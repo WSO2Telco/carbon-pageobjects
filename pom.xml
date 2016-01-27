@@ -57,8 +57,13 @@
 			<version>1.2.17</version>
 		</dependency>
 		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.48.2</version>
+		</dependency>
+		<dependency>
 			<groupId>com.wso2telco</groupId>
-			<artifactId>uitest-framework</artifactId>
+			<artifactId>wso2telco.framework</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

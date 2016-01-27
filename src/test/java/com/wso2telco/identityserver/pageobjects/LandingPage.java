@@ -1,10 +1,6 @@
 package com.wso2telco.identityserver.pageobjects;
 
-import java.util.List;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
@@ -20,8 +16,6 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement btnSearch = defineEelement(UIType.Xpath, ".//input[@value='Search']");
 	private WebPelement btnDelete = defineEelement(UIType.Xpath, ".//a[contains(text(),'Delete')]");
 	private WebPelement btnConfirmarionYes = defineEelement(UIType.Css, ".ui-dialog-buttonpane>button");
-	private WebPelement btnConfirmarionNoUser = defineEelement(UIType.Css, ".ui-dialog-buttonpane>button");
-	private String strBtnConfirmarionNoUser = ".ui-dialog-buttonpane>button";
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
 	
@@ -95,27 +89,8 @@ public class LandingPage extends BasicPageObject  {
 	public void clickSearch(){
 		getElement(btnSearch).click();	
 	}
-	
-	public boolean isUserNotFound() throws Exception {
-		flag = false;
-		logInstruction("Validating IS Home Page");
-		try {
-			List<WebElement> found = driver.findElements(getBy(UIType.Css,strBtnConfirmarionNoUser));
-			if (found.size() > 0) {
-				getElement(btnConfirmarionNoUser).click();
-				flag = true;
-			}
-		} catch (Exception e) {
-			logInstruction("No user found'"
-					+ e.getMessage());
-			throw new Exception(
-					"No User Found"
-							+ e.getLocalizedMessage());
-		}
-		return flag;
-	}
 
-	public void clickDelete() throws InterruptedException{
+	public void clickDelete(){
 		getElement(btnDelete).click();	
 		getElement(btnConfirmarionYes).click();	
 
