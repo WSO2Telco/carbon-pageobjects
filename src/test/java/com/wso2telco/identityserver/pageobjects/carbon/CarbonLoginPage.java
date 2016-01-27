@@ -1,5 +1,6 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
+
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
@@ -8,11 +9,15 @@ import com.wso2telco.test.framework.util.UIType;
 
 public class CarbonLoginPage extends BasicPageObject {
 	
+	
+	
 	private WebPelement txtCarbonUsername = defineEelement(UIType.Xpath, "//input[@id='txtUserName']");
 	
 	private WebPelement txtCarbonPassword = defineEelement(UIType.Xpath, "//input[@id='txtPassword']");
 	
 	private WebPelement btnLogin = defineEelement(UIType.Xpath, "//input[@value='Sign-in']");
+	
+	
 	
 	public CarbonLoginPage(WebDriver driver) {
 		super(driver);
@@ -30,5 +35,6 @@ public class CarbonLoginPage extends BasicPageObject {
 		getElement(btnLogin).click();
 		return new CarbonHomePage(driver);
 	}
+
 
 }
