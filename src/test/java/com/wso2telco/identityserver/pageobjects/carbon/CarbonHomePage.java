@@ -49,8 +49,21 @@ public class CarbonHomePage extends BasicPageObject {
 		return flag;
 	}
 	
-	public boolean validateSignout(String value){
-		return getElement(lnkSignout).getText().equalsIgnoreCase(value);
+	public boolean isSignout(String value) throws Exception{
+		flag = false;
+		logger.debug("Validating Sign out");
+		try {
+			if (getElement(lnkSignout).getText().equalsIgnoreCase(value)){
+				flag = true;
+				logger.debug("Sign out success");
+			} else {
+				logger.debug("Sign out failed");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating sign out 'isSignout()'" + e.getMessage());
+			throw new Exception("Exception While Validating sign out 'isSignout()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickConfigure(){
