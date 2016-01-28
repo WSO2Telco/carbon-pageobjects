@@ -160,8 +160,21 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(lnkAssignRoles).click();
 	}
 	
-	public boolean validateAssignRolesPage(String lblText){
-		return getElement(lblUnassignedRoles).getText().trim().equalsIgnoreCase(lblText);
+	public boolean isAssignRolesPage(String lblText) throws Exception{
+		flag = false;
+		logger.debug("Validating Assign role page");
+		try {
+			if (getElement(lblUnassignedRoles).getText().trim().equalsIgnoreCase(lblText)){
+				flag = true;
+				logger.debug("Assign role page load properly");
+			} else {
+				logger.debug("Assign role page not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Assign role page 'isAssignRolesPage()'" + e.getMessage());
+			throw new Exception("Exception While Validating Assign role page 'isAssignRolesPage()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void enterRoleNamePattern(String role){
@@ -172,10 +185,23 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(btnRoleSearch).click();
 	}
 	
-	public boolean validateRolesSearchArea(String role){
+	public boolean isRolesSearchArea(String role) throws Exception{
+		flag = false;
+		logger.debug("Validating Role search area");
 		String xpath = "//td/label[text()[contains(.,'" + role + "')]]";
 		WebPelement lblRole = defineEelement(UIType.Xpath, xpath);
-		return getElement(lblRole).getText().trim().equalsIgnoreCase(role);
+		try {
+			if (getElement(lblRole).getText().trim().equalsIgnoreCase(role)){
+				flag = true;
+				logger.debug("Role search is working as expected");
+			} else {
+				logger.debug("Role search is not working as expected");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Role search 'isRolesSearchArea()'" + e.getMessage());
+			throw new Exception("Exception While Validating Role search 'isRolesSearchArea()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickRolesPermission(String roleName){
@@ -184,12 +210,38 @@ public class CarbonUserRoles extends BasicPageObject {
 		lnkPermission.click();
 	}
 	
-	public boolean validateRolePermissionPage(String lblText){
-		return getElement(lblRolePermission).getText().trim().contains(lblText);
+	public boolean isRolePermissionPage(String lblText) throws Exception{
+		flag = false;
+		logger.debug("Validating Role permission page");
+		try {
+			if (getElement(lblRolePermission).getText().trim().contains(lblText)){
+				flag = true;
+				logger.debug("Role permission page load properly");
+			} else {
+				logger.debug("Role permission page not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Role permission page 'isRolePermissionPage()'" + e.getMessage());
+			throw new Exception("Exception While Validating Role permission page 'isRolePermissionPage()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
-	public boolean validatePublisherRoleChecked(){
-		return getElement(chkPublisherRole).getAttribute("class").equalsIgnoreCase(permissionCheckBoxClass);
+	public boolean isPublisherRoleChecked() throws Exception{
+		flag = false;
+		logger.debug("Validating Publisher role checked");
+		try {
+			if (getElement(chkPublisherRole).getAttribute("class").equalsIgnoreCase(permissionCheckBoxClass)){
+				flag = true;
+				logger.debug("Publisher role ticked");
+			} else {
+				logger.debug("Publisher role unticked");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Publisher role 'isPublisherRoleChecked()'" + e.getMessage());
+			throw new Exception("Exception While Validating Publisher role 'isPublisherRoleChecked()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickCreatePermission(){
@@ -203,8 +255,21 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(btnUpdate).click();
 	}
 	
-	public boolean validateRoleAssignUpdate(String message){
-		return getElement(lblRoleUpdateMsg).getText().trim().equalsIgnoreCase(message);
+	public boolean isRoleAssignUpdate(String message) throws Exception{
+		flag = false;
+		logger.debug("Validating Role assign update");
+		try {
+			if (getElement(lblRoleUpdateMsg).getText().trim().equalsIgnoreCase(message)){
+				flag = true;
+				logger.debug("Role assign update success");
+			} else {
+				logger.debug("Role assign update unsuccess");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Role assign update 'isRoleAssignUpdate()'" + e.getMessage());
+			throw new Exception("Exception While Validating Role assign update 'isRoleAssignUpdate()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickOK(){
@@ -225,9 +290,22 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(btnUsersViewRoles).click();
 	}
 	
-	public boolean validatePublisherRole(){
+	public boolean isPublisherRole() throws Exception{
+		flag = false;
+		logger.debug("Validating publisher role asign");
 		int count = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]")).size();
-		return (count != 0);
+		try {
+			if (count != 0){
+				flag = true;
+				logger.debug("Pblisher role is assigned");
+			} else {
+				logger.debug("Pblisher role is unsigned");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Pblisher role is assigned 'isPublisherRole()'" + e.getMessage());
+			throw new Exception("Exception While Validating Pblisher role is assigned 'isPublisherRole()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void untickInternalPublisher(){
@@ -236,9 +314,22 @@ public class CarbonUserRoles extends BasicPageObject {
 		}
 	}
 	
-	public boolean validateInternalSubscriber(){
+	public boolean isInternalSubscriber() throws Exception{
+		flag = false;
+		logger.debug("Validating subscriber role asign");
 		int count = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/subscriber')]]")).size();
-		return (count != 0);
+		try {
+			if (count != 0){
+				flag = true;
+				logger.debug("Subscriber role is assigned");
+			} else {
+				logger.debug("Subscriber role is unsigned");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Subscriber role is assigned 'isInternalSubscriber()'" + e.getMessage());
+			throw new Exception("Exception While Validating Subscriber role is assigned 'isInternalSubscriber()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void untickInternalSubscriber(){
