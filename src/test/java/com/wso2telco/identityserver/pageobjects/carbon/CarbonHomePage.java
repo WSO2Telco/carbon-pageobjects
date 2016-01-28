@@ -28,12 +28,11 @@ public class CarbonHomePage extends BasicPageObject {
 	}
 	
 	public boolean isIDSHomeDisplayed(String title) throws Exception {
-
 		flag = false;
 		logger.debug("Validating IDS Home page");
 		Thread.sleep(10000);
 		try {
-			if (title.contains(getElement(titleHome).getText())) {
+			if (title.contains(getElement(titleHome).getText().trim())) {
 				flag = true;
 				logger.debug("Validating IDS Home page completed");
 			} else {
