@@ -160,8 +160,8 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(lnkAssignRoles).click();
 	}
 	
-	public boolean validateAssignRolesPage(){
-		return getElement(lblUnassignedRoles).getText().trim().equalsIgnoreCase("Unassigned Roles");
+	public boolean validateAssignRolesPage(String lblText){
+		return getElement(lblUnassignedRoles).getText().trim().equalsIgnoreCase(lblText);
 	}
 	
 	public void enterRoleNamePattern(String role){
@@ -184,8 +184,8 @@ public class CarbonUserRoles extends BasicPageObject {
 		lnkPermission.click();
 	}
 	
-	public boolean validateRolePermissionPage(){
-		return getElement(lblRolePermission).getText().trim().contains("Permissions of the Role");
+	public boolean validateRolePermissionPage(String lblText){
+		return getElement(lblRolePermission).getText().trim().contains(lblText);
 	}
 	
 	public boolean validatePublisherRoleChecked(){
