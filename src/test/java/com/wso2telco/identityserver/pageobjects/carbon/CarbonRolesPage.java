@@ -41,6 +41,7 @@ public class CarbonRolesPage extends BasicPageObject {
 	private WebPelement txtSearchRole = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.filter']");
 	
 	private WebPelement btnOK = defineEelement(UIType.Xpath, "//button[contains(text(),'OK')]");
+	
 	 
 	
 	public CarbonRolesPage(WebDriver driver) {
@@ -194,5 +195,30 @@ public class CarbonRolesPage extends BasicPageObject {
 			throw new Exception("Exception While Validating User roles are visible 'isRoleVisible()'" + e.getLocalizedMessage());
 		}
 		return flag;
+	}
+	
+	public boolean isUserNameVisible() throws Exception{
+		
+		flag = false;
+		logger.debug("Validating user name is visible");
+		int count = driver.findElements(By.xpath("//a[text()[contains(.,'Delete')]]")).size();
+		try {
+			if (count != 0){
+				flag = true;
+				logger.debug("User name is visible");
+			} else {
+				logger.debug("User name is not visible");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating User name is visible 'isUserNameVisible()'" + e.getMessage());
+			throw new Exception("Exception While Validating User name is visible 'isUserNameVisible()'" + e.getLocalizedMessage());
+		}
+		return flag;
+	}
+	
+	public void clickDeleteUser(String username){
+		String xpath = "//td[contains(.,'"+username+"')]/following-sibling::td[1]/a[4]";
+		WebPelement btnDelete =defineEelement(UIType.Xpath, xpath);
+		getElement(btnDelete).click();
 	}
 }
