@@ -1,5 +1,6 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -9,13 +10,15 @@ import com.wso2telco.test.framework.util.UIType;
 
 public class CarbonUserRoles extends BasicPageObject {
 	
-	private WebPelement lnkUserRoles = defineEelement(UIType.Xpath, "//a[@href='../userstore/index.jsp?region=region1&item=userstores_menu']");
+	Logger logger = Logger.getLogger(CarbonUserRoles.class);
 	
-	private WebPelement lblUserStore = defineEelement(UIType.Xpath, "//table[@id='internal']/thead/tr/th");
+	private WebPelement lnkUserRoles = defineEelement(UIType.Xpath, "//a[@href='../userstore/index.jsp?region=region1&item=userstores_menu']");
 	
 	private WebPelement lnkUsers = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'Users')]]");
 	
-	private WebPelement lblSearchHeader = defineEelement(UIType.Xpath, "//div[@id='workArea']/form/table/thead/tr/th");
+	private WebPelement lblSystemUserStore = defineEelement(UIType.Xpath, "//table[@id='internal']/..//tr/th");
+	
+	private WebPelement lblUsersPage = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
 	private WebPelement txtUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='text']");
 	
@@ -61,24 +64,63 @@ public class CarbonUserRoles extends BasicPageObject {
 		super(driver);
 	}
 	
-	public boolean validateConfigure(){
-		return getElement(lnkUserRoles).getText().equalsIgnoreCase("Users and Roles");
+	public boolean isConfigurePage(String lblText) throws Exception{
+		flag = false;
+		logger.debug("Validating configure page");
+		try {
+			if (getElement(lnkUserRoles).getText().equalsIgnoreCase(lblText)){
+				flag = true;
+				logger.debug("Configure page load properly");
+			} else {
+				logger.debug("Configure page not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Configure page'isConfigurePage()'" + e.getMessage());
+			throw new Exception("Exception While Validating Configure page 'isConfigurePage()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickUserRoles(){
 		getElement(lnkUserRoles).click();
 	}
 	
-	public boolean validateUserRoles(){
-		return getElement(lblUserStore).getText().equalsIgnoreCase("System User Store");
-	}
-	
 	public void clickUsersLink(){
 		getElement(lnkUsers).click();
 	}
 
-	public boolean validateUserSearch(){
-		return getElement(lblSearchHeader).getText().equalsIgnoreCase("Search");
+	public boolean isSystemUserStore(String lblText) throws Exception{
+		flag = false;
+		logger.debug("Validating system user store");
+		try {
+			if (getElement(lblSystemUserStore).getText().equalsIgnoreCase(lblText)){
+				flag = true;
+				logger.debug("system user store load properly");
+			} else {
+				logger.debug("system user store not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating system user store page'isConfigurePage()'" + e.getMessage());
+			throw new Exception("Exception While Validating system user store page 'isConfigurePage()'" + e.getLocalizedMessage());
+		}
+		return  flag;
+	}
+	
+	public boolean isUserPage(String lblText) throws Exception{
+		flag = false;
+		logger.debug("Validating user page");
+		try {
+			if (getElement(lblUsersPage).getText().trim().contains(lblText)){
+				flag = true;
+				logger.debug("User page load properly");
+			} else {
+				logger.debug("User page not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating User Page'isUserPage()'" + e.getMessage());
+			throw new Exception("Exception While Validating User Page 'isUserPage()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void setSearchCriteria(String username){
@@ -93,10 +135,23 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(lnkRoles).click();
 	}
 	
-	public boolean validateSearchedUser(String username){
+	public boolean isUserSearch(String username) throws Exception {
+		flag = false;
+		logger.debug("Validating user search function");
 		String xpath = "//td[text()[contains(.,'" + username + "')]]";
 		WebPelement lblSearchUser = defineEelement(UIType.Xpath, xpath);
-		return getElement(lblSearchUser).getText().trim().equalsIgnoreCase(username);
+		try {
+			if (getElement(lblSearchUser).getText().trim().equalsIgnoreCase(username)){
+				flag = true;
+				logger.debug("User search fuction success");
+			} else {
+				logger.debug("User search fuction failed");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating user search 'isUserSearch()'" + e.getMessage());
+			throw new Exception("Exception While Validating user search 'isUserSearch()'" + e.getLocalizedMessage());
+		}
+		return flag;
 	}
 	
 	public void clickAssignRoles(String username){
