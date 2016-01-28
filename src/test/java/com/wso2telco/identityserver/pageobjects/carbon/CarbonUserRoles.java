@@ -204,10 +204,11 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
-	public void clickRolesPermission(String roleName){
+	public void clickRolesPermission(String roleName) throws InterruptedException{
 		String xpath = "//tr/td/label[text()[contains(.,'" + roleName + "')]]/../../td[2]/a[text()[contains(.,'Permissions')]]";
 		WebPelement lnkPermission = defineEelement(UIType.Xpath, xpath);
-		lnkPermission.click();
+		Thread.sleep(5000);
+		getElement(lnkPermission).click();
 	}
 	
 	public boolean isRolePermissionPage(String lblText) throws Exception{
@@ -258,8 +259,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isRoleAssignUpdate(String message) throws Exception{
 		flag = false;
 		logger.debug("Validating Role assign update");
+		Thread.sleep(5000);
 		try {
-			if (getElement(lblRoleUpdateMsg).getText().trim().equalsIgnoreCase(message)){
+			if (getElement(lblRoleUpdateMsg).getText().trim().contains(message)){
 				flag = true;
 				logger.debug("Role assign update success");
 			} else {
