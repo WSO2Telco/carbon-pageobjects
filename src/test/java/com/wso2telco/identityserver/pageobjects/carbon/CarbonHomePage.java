@@ -23,7 +23,6 @@ public class CarbonHomePage extends BasicPageObject {
 	
 	private WebPelement lnkList = defineEelement(UIType.Xpath, "//div[@id='menu']/ul/li[3]/ul/li[1]/../li[2]/ul/li[2]");
 	
-	private WebPelement btnYes = defineEelement(UIType.Xpath, "//button[contains(.,'Yes')]");
 	
 	public CarbonHomePage(WebDriver driver) {
 		super(driver);
@@ -100,34 +99,5 @@ public class CarbonHomePage extends BasicPageObject {
 	public void clickList(){
 		getElement(lnkList).click();
 	}
-	
-	public boolean isAppAvailable(String app) throws Exception{
-		flag = false;
-		logger.debug("Validating Application");
-		String xpath = "//td[text() = '"+app+"']";
-		WebPelement lblApp =defineEelement(UIType.Xpath, xpath);
-		
-		try {
-			if (app.contains(getElement(lblApp).getText())){
-				flag = true;
-				logger.debug("Validating Application is completed");
-			} else {
-				logger.debug("Validating Application is not completed");
-			}
-		} catch (Exception e) {
-			logger.debug("Exception While Validating Application page 'isAppAvailable()'" + e.getMessage());
-			throw new Exception("Exception While Validating Application page 'isAppAvailable()'" + e.getLocalizedMessage());
-		}
-		return flag;
-	}
-	
-	public void clickAppDelete(String app){
-		String xpath = "//td[text() = '"+app+"']/following-sibling::td[2]/a[2]";
-		WebPelement btnDelete =defineEelement(UIType.Xpath, xpath);
-		getElement(btnDelete).click();
-	}
-	
-	public void clickYes(){
-		getElement(btnYes).click();
-	}
+
 }
