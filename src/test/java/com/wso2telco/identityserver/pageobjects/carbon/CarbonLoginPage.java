@@ -11,9 +11,9 @@ public class CarbonLoginPage extends BasicPageObject {
 	
 	
 	
-	private WebPelement txtCarbonUsername = defineEelement(UIType.Xpath, "//input[@id='txtUserName']");
+	private WebPelement txtCarbonUsername = defineEelement(UIType.ID, "txtUserName");
 	
-	private WebPelement txtCarbonPassword = defineEelement(UIType.Xpath, "//input[@id='txtPassword']");
+	private WebPelement txtCarbonPassword = defineEelement(UIType.ID, "txtPassword");
 	
 	private WebPelement btnLogin = defineEelement(UIType.Xpath, "//input[@value='Sign-in']");
 	
