@@ -1,53 +1,91 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
+/**
+ * The Class CarbonRolesPage.
+ */
 public class CarbonRolesPage extends BasicPageObject {
 	
+	/** The logger. */
 	Logger logger = Logger.getLogger(CarbonRolesPage.class);
 
+	/** The lbl roles. */
 	private WebPelement lblRoles = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
+	/** The lnk add role. */
 	private WebPelement lnkAddRole = defineEelement(UIType.Xpath, "//a[text()[contains(.,'Add New Role')]]");
 	
+	/** The lbl add role. */
 	private WebPelement lblAddRole = defineEelement(UIType.Xpath, "//div[@id='workArea']/h3");
 	
+	/** The txt role name. */
 	private WebPelement txtRoleName = defineEelement(UIType.Xpath, "//input[@name='roleName']");
 	
+	/** The btn next. */
 	private WebPelement btnNext = defineEelement(UIType.Xpath, "//input[@value='Next >']");
 	
+	/** The lbl select permission. */
 	private WebPelement lblSelectPermission = defineEelement(UIType.Xpath, "//div[@id='workArea']/h3");
 	
+	/** The lbl select users. */
 	private WebPelement lblSelectUsers = defineEelement(UIType.Xpath, "//div[@id='workArea']/h3");
 	
+	/** The txt search. */
 	private WebPelement txtSearch = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.assign.filter']");
 	
+	/** The btn search. */
 	private WebPelement btnSearch = defineEelement(UIType.Xpath, "//input[@value='Search']");
 	
+	/** The btn finish. */
 	private WebPelement btnFinish = defineEelement(UIType.Xpath, "//input[@value='Finish']");
 	
-	private WebPelement popUpSuccess = defineEelement(UIType.Xpath, "//div[@id='messagebox-info']");
+	/** The pop up success. */
+	private WebPelement popUpSuccess = defineEelement(UIType.ID, "messagebox-info");
 	
+	/** The lnk delete aggrigator. */
 	private WebPelement lnkDeleteAggrigator = defineEelement(UIType.Xpath, "//table[@id='roleTable']/tbody/tr/td[2]/a[5]");
 	
+	/** The btn yes. */
 	private WebPelement btnYes = defineEelement(UIType.Xpath, "//div[@class='ui-dialog-buttonpane']/button[1]");
 	
+	/** The txt search role. */
 	private WebPelement txtSearchRole = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.filter']");
 	
+	/** The btn ok. */
 	private WebPelement btnOK = defineEelement(UIType.Xpath, "//button[contains(text(),'OK')]");
+	
+	/** The lnk role visible. */
+	private String lnkRoleVisible = "//a[text()[contains(.,'Rename')]]";
+	
+	/** The lnk delete. */
+	private String lnkDelete = "//a[text()[contains(.,'Delete')]]";
 	
 	 
 	
+	/**
+	 * Instantiates a new carbon roles page.
+	 *
+	 * @author SulakkhanaW
+	 * @param driver the driver
+	 */
 	public CarbonRolesPage(WebDriver driver) {
 		super(driver);
 	}
 
+	/**
+	 * Checks if is role page.
+	 *
+	 * @author SulakkhanaW
+	 * @param role the role
+	 * @return true, if is role page
+	 * @throws Exception the exception
+	 */
 	public boolean isRolePage(String role) throws Exception{
 		flag = false;
 		logger.debug("Validating Role page");
@@ -65,10 +103,25 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click add new role.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickAddNewRole(){
+		logger.debug("Clicking on Add new role");
 		getElement(lnkAddRole).click();
+		logger.debug("Clicked on Add new role");
 	}
 	
+	/**
+	 * Checks if is adds the roles page.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is adds the roles page
+	 * @throws Exception the exception
+	 */
 	public boolean isAddRolesPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Add Role page");
@@ -86,14 +139,37 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Enter role name.
+	 *
+	 * @author SulakkhanaW
+	 * @param rolename the rolename
+	 */
 	public void enterRoleName(String rolename){
+		logger.debug("Entering Role name");
 		getElement(txtRoleName).clearAndSendkeys(rolename);
+		logger.debug("Entered Role name");
 	}
 	
+	/**
+	 * Click next.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickNext(){
+		logger.debug("Clicking on Next");
 		getElement(btnNext).click();
+		logger.debug("Clicked on Next");
 	}
 	
+	/**
+	 * Checks if is select permission.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is select permission
+	 * @throws Exception the exception
+	 */
 	public boolean isSelectPermission(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating select permission page");
@@ -111,6 +187,14 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Checks if is select users.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is select users
+	 * @throws Exception the exception
+	 */
 	public boolean isSelectUsers(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Select user page");
@@ -128,24 +212,62 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Eneter search value.
+	 *
+	 * @author SulakkhanaW
+	 * @param searchvalue the searchvalue
+	 */
 	public void eneterSearchValue(String searchvalue){
+		logger.debug("Entering search value");
 		getElement(txtSearch).clearAndSendkeys(searchvalue);
+		logger.debug("Entered search value");
 	}
 	
+	/**
+	 * Click search.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickSearch(){
+		logger.debug("Clicking search button");
 		getElement(btnSearch).click();
+		logger.debug("Clicked search button");
 	}
 	
+	/**
+	 * Select user.
+	 *
+	 * @author SulakkhanaW
+	 * @param username1 the username1
+	 */
 	public void selectUser(String username1){
 		String xpath = "//input[@value='" + username1 + "' and @type='checkbox']";
 		WebPelement btnUser =defineEelement(UIType.Xpath, xpath);
+		logger.debug("Selecting user");
 		getElement(btnUser).click();
+		logger.debug("Selected user");
 	}
 	
+	/**
+	 * Click finish.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickFinish(){
+		logger.debug("Clicking on finish");
 		getElement(btnFinish).click();
+		logger.debug("Clicked on finish");
 	}
 	
+	/**
+	 * Checks if is success popup.
+	 *
+	 * @author SulakkhanaW
+	 * @param msg the msg
+	 * @return true, if is success popup
+	 * @throws Exception the exception
+	 */
 	public boolean isSuccessPopup(String msg) throws Exception{
 		flag = false;
 		logger.debug("Validating Success popup");
@@ -163,26 +285,62 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click delete.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickDelete(){
+		logger.debug("Clicking on delete");
 		getElement(lnkDeleteAggrigator).click();
+		logger.debug("Clicked on delete");
 	}
 	
+	/**
+	 * Click yes.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickYes(){
+		logger.debug("Clicking on yes");
 		getElement(btnYes).click();
+		logger.debug("Clicked on yes");
 	}
 	
+	/**
+	 * Enter aggrigator role name.
+	 *
+	 * @author SulakkhanaW
+	 * @param rolename the rolename
+	 */
 	public void enterAggrigatorRoleName(String rolename){
+		logger.debug("Entering aggrigator role name");
 		getElement(txtSearchRole).clearAndSendkeys(rolename);
+		logger.debug("Entered aggrigator role name");
 	}
 	
+	/**
+	 * Click ok.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickOK(){
+		logger.debug("Clicking on OK");
 		getElement(btnOK).click();
+		logger.debug("Clicked on OK");
 	}
 
+	/**
+	 * Checks if is role visible.
+	 *
+	 * @author SulakkhanaW
+	 * @return true, if is role visible
+	 * @throws Exception the exception
+	 */
 	public boolean isRoleVisible() throws Exception{
 		flag = false;
 		logger.debug("Validating user roles are visible");
-		int count = driver.findElements(By.xpath("//a[text()[contains(.,'Rename')]]")).size();
+		int count = verifyListContent(UIType.Xpath, lnkRoleVisible).size();
 		try {
 			if (count != 0){
 				flag = true;
@@ -197,11 +355,18 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Checks if is user name visible.
+	 *
+	 * @author SulakkhanaW
+	 * @return true, if is user name visible
+	 * @throws Exception the exception
+	 */
 	public boolean isUserNameVisible() throws Exception{
 		
 		flag = false;
 		logger.debug("Validating user name is visible");
-		int count = driver.findElements(By.xpath("//a[text()[contains(.,'Delete')]]")).size();
+		int count = verifyListContent(UIType.Xpath, lnkDelete).size();
 		try {
 			if (count != 0){
 				flag = true;
@@ -216,9 +381,17 @@ public class CarbonRolesPage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click delete user.
+	 *
+	 * @author SulakkhanaW
+	 * @param username the username
+	 */
 	public void clickDeleteUser(String username){
 		String xpath = "//td[contains(.,'"+username+"')]/following-sibling::td[1]/a[4]";
 		WebPelement btnDelete =defineEelement(UIType.Xpath, xpath);
+		logger.debug("Clicking on delete");
 		getElement(btnDelete).click();
+		logger.debug("Clicked on delete");
 	}
 }

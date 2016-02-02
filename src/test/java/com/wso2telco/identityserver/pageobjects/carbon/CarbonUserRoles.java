@@ -1,69 +1,116 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
+/**
+ * The Class CarbonUserRoles.
+ */
 public class CarbonUserRoles extends BasicPageObject {
 	
+	/** The logger. */
 	Logger logger = Logger.getLogger(CarbonUserRoles.class);
 	
+	/** The lnk user roles. */
 	private WebPelement lnkUserRoles = defineEelement(UIType.Xpath, "//a[@href='../userstore/index.jsp?region=region1&item=userstores_menu']");
 	
+	/** The lnk users. */
 	private WebPelement lnkUsers = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'Users')]]");
 	
+	/** The lbl system user store. */
 	private WebPelement lblSystemUserStore = defineEelement(UIType.Xpath, "//table[@id='internal']/..//tr/th");
 	
+	/** The lbl users page. */
 	private WebPelement lblUsersPage = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
+	/** The txt user search. */
 	private WebPelement txtUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='text']");
 	
+	/** The btn user search. */
 	private WebPelement btnUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='submit']");
 
+	/** The lnk roles. */
 	private WebPelement lnkRoles = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'Roles')]]");
 	
+	/** The lbl unassigned roles. */
 	private WebPelement lblUnassignedRoles = defineEelement(UIType.Xpath, "//th[text()[contains(.,'Unassigned Roles')]]");
 	
+	/** The txt role name pattern. */
 	private WebPelement txtRoleNamePattern = defineEelement(UIType.Xpath, "//td/input[@type='text']");
 	
+	/** The btn role search. */
 	private WebPelement btnRoleSearch = defineEelement(UIType.Xpath, "//td/input[@type='submit']");
 	
+	/** The lbl role permission. */
 	private WebPelement lblRolePermission = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
-	private WebPelement chkPublisherRole = defineEelement(UIType.Xpath, "//td[@id='ygtvcheck132']");
+	/** The chk publisher role. */
+	private WebPelement chkPublisherRole = defineEelement(UIType.ID, "ygtvcheck132");
 	
-	private WebPelement chkCreateRole = defineEelement(UIType.Xpath, "//td[@id='ygtvcheck133']");
+	/** The chk create role. */
+	private WebPelement chkCreateRole = defineEelement(UIType.ID, "ygtvcheck133");
 	
+	/** The btn update. */
 	private WebPelement btnUpdate = defineEelement(UIType.Xpath, "//input[@value='Update']");
 	
+	/** The lbl role update msg. */
 	private WebPelement lblRoleUpdateMsg = defineEelement(UIType.Xpath, "//div[@id='messagebox-info']/p");
 	
+	/** The btn success ok. */
 	private WebPelement btnSuccessOk = defineEelement(UIType.Xpath, "//button[text()[contains(.,'OK')]]");
 	
+	/** The btn finish. */
 	private WebPelement btnFinish = defineEelement(UIType.Xpath, "//td/input[@value='Finish']");
 	
+	/** The btn users view roles. */
 	private WebPelement btnUsersViewRoles = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'View Roles')]]");
 	
+	/** The chkbx intenal publisher. */
 	private WebPelement chkbxIntenalPublisher = defineEelement(UIType.Xpath, "//td/label[text()[contains(.,'Internal/publisher')]]/input");
 	
+	/** The chkbx intenal subscriber. */
 	private WebPelement chkbxIntenalSubscriber = defineEelement(UIType.Xpath, "//td/label[text()[contains(.,'Internal/subscriber')]]/input");
 	
+	/** The btn users edit roles finish. */
 	private WebPelement btnUsersEditRolesFinish = defineEelement(UIType.Xpath, "//td/input[@value='Finish']");
 	
+	/** The btn users edit roles cancel. */
 	private WebPelement btnUsersEditRolesCancel = defineEelement(UIType.Xpath, "//td/input[@value='Cancel']");
 	
+	/** The btn edit role success ok. */
 	private WebPelement btnEditRoleSuccessOk = defineEelement(UIType.Xpath, "//div/button[text()[contains(.,'OK')]]");
 	
+	/** The permission check box class. */
 	private String permissionCheckBoxClass = "ygtvcheck2";
+
+	/** The lbl publisher. */
+	private String lblPublisher = "//td/label[text()[contains(.,'Internal/publisher')]]";
 	
+	/** The lbl subscriber. */
+	private String lblSubscriber = "//td/label[text()[contains(.,'Internal/subscriber')]]";
+	
+	/**
+	 * Instantiates a new carbon user roles.
+	 *
+	 * @author SulakkhanaW
+	 * @param driver the driver
+	 */
 	public CarbonUserRoles(WebDriver driver) {
 		super(driver);
 	}
 	
+	/**
+	 * Checks if is configure page.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is configure page
+	 * @throws Exception the exception
+	 */
 	public boolean isConfigurePage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating configure page");
@@ -81,14 +128,36 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click user roles.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickUserRoles(){
+		logger.debug("Clicking on user roles");
 		getElement(lnkUserRoles).click();
+		logger.debug("Clicked on user roles");
 	}
 	
+	/**
+	 * Click users link.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickUsersLink(){
+		logger.debug("Clicking on user link");
 		getElement(lnkUsers).click();
+		logger.debug("Clicked on user link");
 	}
 
+	/**
+	 * Checks if is system user store.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is system user store
+	 * @throws Exception the exception
+	 */
 	public boolean isSystemUserStore(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating system user store");
@@ -106,6 +175,14 @@ public class CarbonUserRoles extends BasicPageObject {
 		return  flag;
 	}
 	
+	/**
+	 * Checks if is user page.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is user page
+	 * @throws Exception the exception
+	 */
 	public boolean isUserPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating user page");
@@ -123,18 +200,48 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Sets the search criteria.
+	 *
+	 * @author SulakkhanaW
+	 * @param username the new search criteria
+	 */
 	public void setSearchCriteria(String username){
+		logger.debug("Entering search criteria");
 		getElement(txtUserSearch).clearAndSendkeys(username);
+		logger.debug("Entered search criteria");
 	}
 	
+	/**
+	 * Click user search button.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickUserSearchButton(){
+		logger.debug("Clicking on user search button");
 		getElement(btnUserSearch).click();
+		logger.debug("Clicked on user search button");
 	}
 	
+	/**
+	 * Click roles link.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickRolesLink(){
+		logger.debug("Clicking on Roles link");
 		getElement(lnkRoles).click();
+		logger.debug("Clicked on Roles link");
 	}
 	
+	/**
+	 * Checks if is user search.
+	 *
+	 * @author SulakkhanaW
+	 * @param username the username
+	 * @return true, if is user search
+	 * @throws Exception the exception
+	 */
 	public boolean isUserSearch(String username) throws Exception {
 		flag = false;
 		logger.debug("Validating user search function");
@@ -154,12 +261,28 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click assign roles.
+	 *
+	 * @author SulakkhanaW
+	 * @param username the username
+	 */
 	public void clickAssignRoles(String username){
 		String xpath = "//td[text()[contains(.,'" + username + "')]]/../td[2]/a[text()[contains(.,'Assign Roles')]]";
 		WebPelement lnkAssignRoles = defineEelement(UIType.Xpath, xpath);
+		logger.debug("Clicking on Assign roles");
 		getElement(lnkAssignRoles).click();
+		logger.debug("Clicked on Assign roles");
 	}
 	
+	/**
+	 * Checks if is assign roles page.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is assign roles page
+	 * @throws Exception the exception
+	 */
 	public boolean isAssignRolesPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Assign role page");
@@ -177,14 +300,37 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Enter role name pattern.
+	 *
+	 * @author SulakkhanaW
+	 * @param role the role
+	 */
 	public void enterRoleNamePattern(String role){
+		logger.debug("Entering role name pattern");
 		getElement(txtRoleNamePattern).clearAndSendkeys(role);
+		logger.debug("Entered role name pattern");
 	}
 	
+	/**
+	 * Click role search.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickRoleSearch(){
+		logger.debug("Clicking on role search");
 		getElement(btnRoleSearch).click();
+		logger.debug("Clicked on role search");
 	}
 	
+	/**
+	 * Checks if is roles search area.
+	 *
+	 * @author SulakkhanaW
+	 * @param role the role
+	 * @return true, if is roles search area
+	 * @throws Exception the exception
+	 */
 	public boolean isRolesSearchArea(String role) throws Exception{
 		flag = false;
 		logger.debug("Validating Role search area");
@@ -204,13 +350,30 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click roles permission.
+	 *
+	 * @author SulakkhanaW
+	 * @param roleName the role name
+	 * @throws InterruptedException the interrupted exception
+	 */
 	public void clickRolesPermission(String roleName) throws InterruptedException{
 		String xpath = "//tr/td/label[text()[contains(.,'" + roleName + "')]]/../../td[2]/a[text()[contains(.,'Permissions')]]";
 		WebPelement lnkPermission = defineEelement(UIType.Xpath, xpath);
 		Thread.sleep(5000);
+		logger.debug("Clicking on role permission");
 		getElement(lnkPermission).click();
+		logger.debug("Clicked on role permission");
 	}
 	
+	/**
+	 * Checks if is role permission page.
+	 *
+	 * @author SulakkhanaW
+	 * @param lblText the lbl text
+	 * @return true, if is role permission page
+	 * @throws Exception the exception
+	 */
 	public boolean isRolePermissionPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Role permission page");
@@ -228,6 +391,13 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Checks if is publisher role checked.
+	 *
+	 * @author SulakkhanaW
+	 * @return true, if is publisher role checked
+	 * @throws Exception the exception
+	 */
 	public boolean isPublisherRoleChecked() throws Exception{
 		flag = false;
 		logger.debug("Validating Publisher role checked");
@@ -245,17 +415,47 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
-	public void clickCreatePermission(){
+	/**
+	 * Click create permission.
+	 *
+	 * @author SulakkhanaW
+	 * @throws Exception the exception
+	 */
+	public void clickCreatePermission() throws Exception{
 		String chkCreateClass = getElement(chkCreateRole).getAttribute("class");
-		if (!(chkCreateClass.equalsIgnoreCase(permissionCheckBoxClass))){
-			getElement(chkCreateRole).click();
+		try {
+			logger.debug("Validating create permission is selected");
+			if (!(chkCreateClass.equalsIgnoreCase(permissionCheckBoxClass))){
+				logger.debug("Create permission is not selected");
+				logger.debug("Seleting Create permission");
+				getElement(chkCreateRole).click();
+				logger.debug("Seleted Create permission");
+			}logger.debug("Seleting Create permission");
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Publisher role 'clickCreatePermission()'" + e.getMessage());
+			throw new Exception("Exception While Validating Publisher role 'clickCreatePermission()'" + e.getLocalizedMessage());
 		}
 	}
 	
+	/**
+	 * Click update.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickUpdate(){
+		logger.debug("Clicking on update");
 		getElement(btnUpdate).click();
+		logger.debug("Clicked on update");
 	}
 	
+	/**
+	 * Checks if is role assign update.
+	 *
+	 * @author SulakkhanaW
+	 * @param message the message
+	 * @return true, if is role assign update
+	 * @throws Exception the exception
+	 */
 	public boolean isRoleAssignUpdate(String message) throws Exception{
 		flag = false;
 		logger.debug("Validating Role assign update");
@@ -274,28 +474,64 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click ok.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickOK(){
+		logger.debug("Clicking on OK");
 		getElement(btnSuccessOk).click();
+		logger.debug("Clicked on update");
 	}
 	
+	/**
+	 * Click roles search area.
+	 *
+	 * @author SulakkhanaW
+	 * @param role the role
+	 */
 	public void clickRolesSearchArea(String role){
 		String xpath = "//td/label[text()[contains(.,'" + role + "')]]/input[@type='checkbox']";
 		WebPelement chkRole = defineEelement(UIType.Xpath, xpath);
+		logger.debug("Clicking on Role search area");
 		getElement(chkRole).click();
+		logger.debug("Clicked on Role search area");
 	}
 	
+	/**
+	 * Click finish.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickFinish(){
+		logger.debug("Clicking on Finish");
 		getElement(btnFinish).click();
+		logger.debug("Clicked on finished");
 	}
 	
+	/**
+	 * Click users view roles.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickUsersViewRoles(){
+		logger.debug("Clicking on Users view roles");
 		getElement(btnUsersViewRoles).click();
+		logger.debug("Clicked on Users view roles");
 	}
 	
+	/**
+	 * Checks if is publisher role.
+	 *
+	 * @author SulakkhanaW
+	 * @return true, if is publisher role
+	 * @throws Exception the exception
+	 */
 	public boolean isPublisherRole() throws Exception{
 		flag = false;
 		logger.debug("Validating publisher role asign");
-		int count = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]")).size();
+		int count = verifyListContent(UIType.Xpath, lblPublisher).size();
 		try {
 			if (count != 0){
 				flag = true;
@@ -310,16 +546,39 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
-	public void untickInternalPublisher(){
-		if (getElement(chkbxIntenalPublisher).isSelected()){
-			getElement(chkbxIntenalPublisher).click();
+	/**
+	 * Untick internal publisher.
+	 *
+	 * @author SulakkhanaW
+	 * @throws Exception the exception
+	 */
+	public void untickInternalPublisher() throws Exception{
+		try {
+			logger.debug("Validating untick internal publisher role");
+			if (getElement(chkbxIntenalPublisher).isSelected()){
+				logger.debug("Internal publisher role is selected");
+				logger.debug("Unticking Internal publisher role");
+				getElement(chkbxIntenalPublisher).click();
+				logger.debug("Internal publisher role is not selected");
+			}
+			logger.debug("Internal publisher role is not selected");
+		} catch (Exception e) {
+			logger.debug("Exception While untick internal publisher role 'untickInternalPublisher()'" + e.getMessage());
+			throw new Exception("Exception While untick internal publisher role 'untickInternalPublisher()'" + e.getLocalizedMessage());
 		}
 	}
 	
+	/**
+	 * Checks if is internal subscriber.
+	 *
+	 * @author SulakkhanaW
+	 * @return true, if is internal subscriber
+	 * @throws Exception the exception
+	 */
 	public boolean isInternalSubscriber() throws Exception{
 		flag = false;
 		logger.debug("Validating subscriber role asign");
-		int count = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/subscriber')]]")).size();
+		int count = verifyListContent(UIType.Xpath, lblSubscriber).size();
 		try {
 			if (count != 0){
 				flag = true;
@@ -334,22 +593,59 @@ public class CarbonUserRoles extends BasicPageObject {
 		return flag;
 	}
 	
-	public void untickInternalSubscriber(){
-		if (getElement(chkbxIntenalSubscriber).isSelected()){
-			getElement(chkbxIntenalSubscriber).click();
+	/**
+	 * Untick internal subscriber.
+	 *
+	 * @author SulakkhanaW
+	 * @throws Exception the exception
+	 */
+	public void untickInternalSubscriber() throws Exception{
+		try {
+			logger.debug("Validating untick internal subscriber role");
+			if (getElement(chkbxIntenalSubscriber).isSelected()){
+				logger.debug("Internal subscriber role is selected");
+				logger.debug("Unticking Internal subscriber role");
+				getElement(chkbxIntenalSubscriber).click();
+				logger.debug("Internal subscriber role is not selected");
+			}
+			logger.debug("Internal subscriber role is not selected");
+		} catch (Exception e) {
+			logger.debug("Exception While untick internal subscriber role 'untickInternalSubscriber()'" + e.getMessage());
+			throw new Exception("Exception While untick internal subscriber role 'untickInternalSubscriber()'" + e.getLocalizedMessage());
 		}
 	}
 	
+	/**
+	 * Click edit roles finish.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickEditRolesFinish(){
+		logger.debug("Clicking edit roles finish");
 		getElement(btnUsersEditRolesFinish).click();
+		logger.debug("Clicked edit roles finish");
 	}
 	
+	/**
+	 * Click edit roles cancel.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickEditRolesCancel(){
+		logger.debug("Clicking edit roles cancel");
 		getElement(btnUsersEditRolesCancel).click();
+		logger.debug("Clicked edit roles cancel");
 	}
 	
+	/**
+	 * Click edit roles success msg ok.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickEditRolesSuccessMsgOk(){
+		logger.debug("Clicking edit roles success message");
 		getElement(btnEditRoleSuccessOk).click();
+		logger.debug("Clicked edit roles success message");
 	}
 
 }

@@ -7,27 +7,51 @@ import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
+/**
+ * The Class CarbonHomePage.
+ */
 public class CarbonHomePage extends BasicPageObject {
 	
-	Logger logger = Logger.getLogger(CarbonLoginPage.class);
+	/** The logger. */
+	Logger logger = Logger.getLogger(CarbonHomePage.class);
 	
+	/** The lnk signout. */
 	private WebPelement lnkSignout = defineEelement(UIType.Xpath, "//li[@class='right']/a");
 	
+	/** The lbl configure. */
 	private WebPelement lblConfigure = defineEelement(UIType.Xpath, "//span[text()[contains(.,'Configure')]]");
 	
+	/** The lbl main. */
 	private WebPelement lblMain = defineEelement(UIType.Xpath, "//span[text()[contains(.,'Main')]]");
 	
+	/** The title home. */
 	private WebPelement titleHome = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
+	/** The lbl service provider. */
 	private WebPelement lblServiceProvider = defineEelement(UIType.Xpath, "//div[@id='menu']/ul/li[3]/ul/li[1]");
 	
+	/** The lnk list. */
 	private WebPelement lnkList = defineEelement(UIType.Xpath, "//div[@id='menu']/ul/li[3]/ul/li[1]/../li[2]/ul/li[2]");
 	
 	
+	/**
+	 * Instantiates a new carbon home page.
+	 *
+	 * @author SulakkhanaW
+	 * @param driver the driver
+	 */
 	public CarbonHomePage(WebDriver driver) {
 		super(driver);
 	}
 	
+	/**
+	 * Checks if is IDS home displayed.
+	 *
+	 * @author SulakkhanaW
+	 * @param title the title
+	 * @return true, if is IDS home displayed
+	 * @throws Exception the exception
+	 */
 	public boolean isIDSHomeDisplayed(String title) throws Exception {
 		flag = false;
 		logger.debug("Validating IDS Home page");
@@ -49,6 +73,14 @@ public class CarbonHomePage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Checks if is signout.
+	 *
+	 * @author SulakkhanaW
+	 * @param value the value
+	 * @return true, if is signout
+	 * @throws Exception the exception
+	 */
 	public boolean isSignout(String value) throws Exception{
 		flag = false;
 		logger.debug("Validating Sign out");
@@ -66,14 +98,36 @@ public class CarbonHomePage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click configure.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickConfigure(){
+		logger.debug("Clicking on configure");
 		getElement(lblConfigure).click();
+		logger.debug("Clicked on configure");
 	}
 
+	/**
+	 * Click main.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickMain(){
+		logger.debug("Clicking on main");
 		getElement(lblMain).click();
+		logger.debug("Clicked on main");
 	}
 	
+	/**
+	 * Checks if is menu list displayed.
+	 *
+	 * @author SulakkhanaW
+	 * @param menuList the menu list
+	 * @return true, if is menu list displayed
+	 * @throws Exception the exception
+	 */
 	public boolean isMenuListDisplayed(String menuList) throws Exception {
 
 		flag = false;
@@ -96,8 +150,15 @@ public class CarbonHomePage extends BasicPageObject {
 		return flag;
 	}
 	
+	/**
+	 * Click list.
+	 *
+	 * @author SulakkhanaW
+	 */
 	public void clickList(){
+		logger.debug("Clicking on list");
 		getElement(lnkList).click();
+		logger.debug("Clicked on list");
 	}
 
 }
