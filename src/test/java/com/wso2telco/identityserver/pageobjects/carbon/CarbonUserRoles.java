@@ -385,7 +385,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public void clickRolesPermission(String roleName) throws InterruptedException{
 		String xpath = String.format(lnkPermission, roleName);
 		WebPelement lnkPermission = defineEelement(UIType.Xpath, xpath);
-		Thread.sleep(5000);
+		Thread.sleep(sleepTime);
 		logger.debug("Clicking on role permission");
 		getElement(lnkPermission).click();
 		logger.debug("Clicked on role permission");
@@ -484,7 +484,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isRoleAssignUpdate(String message) throws Exception{
 		flag = false;
 		logger.debug("Validating Role assign update");
-		Thread.sleep(5000);
+		Thread.sleep(sleepTime);
 		try {
 			if (getElement(lblRoleUpdateMsg).getText().trim().contains(message)){
 				flag = true;

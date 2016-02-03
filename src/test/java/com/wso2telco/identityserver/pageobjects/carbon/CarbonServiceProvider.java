@@ -112,7 +112,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating App in SP");
 		int count = verifyListContent(UIType.Xpath, lblEdit).size();
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 		try {
 			if (count != 0) {
@@ -157,7 +157,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Title Service Provider");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 		try {
 			if (spHeader.contains(getElement(lblHeader).getText())) {
@@ -243,7 +243,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Title Advanced Authentication Configuration");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 		String header = getElement(lblHeader).getText();
 		
@@ -331,7 +331,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Title View/Update application settings");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 		try {
 			if (viewHeader.contains(getElement(lblHeader).getText())) {
@@ -439,7 +439,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Success Message");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 		try {
 			if (message.contains(getElement(lblSuccess).getText())) {
@@ -470,7 +470,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Client Key");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 			try {
 			if (clientKey.contains(getElement(lblClientKey).getText())) {
@@ -501,7 +501,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Client Secret");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 			try {
 			if (clientSec.contains(getElement(lblClientSec).getText())) {
@@ -532,7 +532,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Call Back URL");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		
 			try {
 			if (callBackURL.contains(getElement(lnkCallBack).getText())) {

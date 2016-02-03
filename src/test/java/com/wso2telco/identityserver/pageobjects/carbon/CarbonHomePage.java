@@ -55,7 +55,7 @@ public class CarbonHomePage extends BasicPageObject {
 	public boolean isIDSHomeDisplayed(String title) throws Exception {
 		flag = false;
 		logger.debug("Validating IDS Home page");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		try {
 			if (title.contains(getElement(titleHome).getText().trim())) {
 				flag = true;
@@ -132,7 +132,7 @@ public class CarbonHomePage extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating Menu tab");
-		Thread.sleep(10000);
+		Thread.sleep(sleepTime);
 		try {
 			if (menuList.contains(getElement(lblServiceProvider).getText())) {
 				flag = true;
