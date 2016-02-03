@@ -66,6 +66,16 @@ public class CarbonRolesPage extends BasicPageObject {
 	/** The lnk delete. */
 	private String lnkDelete = "//a[text()[contains(.,'Delete')]]";
 	
+	/** The btn user. 
+	 * %s_1 = username
+	 **/
+	private String btnUser = "//input[@value='%s' and @type='checkbox']";
+	
+	/** The btn delete. 
+	 * %s_1 = username
+	 **/
+	private String btnDelete = "//td[contains(.,'%s')]/following-sibling::td[1]/a[4]"; 
+	
 	 
 	
 	/**
@@ -242,7 +252,7 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * @param username1 the username1
 	 */
 	public void selectUser(String username1){
-		String xpath = "//input[@value='" + username1 + "' and @type='checkbox']";
+		String xpath = String.format(btnUser, username1);
 		WebPelement btnUser =defineEelement(UIType.Xpath, xpath);
 		logger.debug("Selecting user");
 		getElement(btnUser).click();
@@ -388,7 +398,7 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * @param username the username
 	 */
 	public void clickDeleteUser(String username){
-		String xpath = "//td[contains(.,'"+username+"')]/following-sibling::td[1]/a[4]";
+		String xpath = String.format(btnDelete, username);
 		WebPelement btnDelete =defineEelement(UIType.Xpath, xpath);
 		logger.debug("Clicking on delete");
 		getElement(btnDelete).click();

@@ -84,6 +84,11 @@ public class CarbonServiceProvider extends BasicPageObject {
 	/** The lbl edit. */
 	private String lblEdit =  "//a[contains(.,'Edit')]";
 	
+	/** The btn edit. 
+	 * %s_1 = appName
+	 **/
+	private String btnEdit = "//td[contains(.,'%s')]/../td[3]/a[1]";
+	
 	/**
 	 * Instantiates a new carbon service provider.
 	 *
@@ -133,7 +138,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * @param app the app
 	 */
 	public void clickAppEdit(String app){
-		String xpath = "//td[contains(.,'"+app+"')]/../td[3]/a[1]";
+		String xpath = String.format(btnEdit, app);
 		WebPelement btnEdit =defineEelement(UIType.Xpath, xpath);
 		logger.debug("Clicking on Application edit");
 		getElement(btnEdit).click();

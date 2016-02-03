@@ -93,6 +93,31 @@ public class CarbonUserRoles extends BasicPageObject {
 	/** The lbl subscriber. */
 	private String lblSubscriber = "//td/label[text()[contains(.,'Internal/subscriber')]]";
 	
+	/** The lbl user search. 
+	 * %s_1 = username
+	 **/
+	private String lblUserSearch = "//td[text()[contains(.,'%s')]]";
+	
+	/** The lnk assign role. 
+	 * %s_1 = username
+	 **/
+	private String lnkAssignRole = "//td[text()[contains(.,'%s')]]/../td[2]/a[text()[contains(.,'Assign Roles')]]";
+	
+	/** The lbl name role. 
+	 * %s_1 = Role
+	 **/
+	private String lblNameRole = "//td/label[text()[contains(.,'%s')]]";
+	
+	/** The lnk permission. 
+	 * %s_1 = roleName
+	 **/
+	private String lnkPermission = "//tr/td/label[text()[contains(.,'%s')]]/../../td[2]/a[text()[contains(.,'Permissions')]]";
+	
+	/** The chk role. 
+	 * %s_1 = role
+	 **/
+	private String chkRole = "//td/label[text()[contains(.,'%s')]]/input[@type='checkbox']";
+	
 	/**
 	 * Instantiates a new carbon user roles.
 	 *
@@ -245,7 +270,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isUserSearch(String username) throws Exception {
 		flag = false;
 		logger.debug("Validating user search function");
-		String xpath = "//td[text()[contains(.,'" + username + "')]]";
+		String xpath = String.format(lblUserSearch, username);
 		WebPelement lblSearchUser = defineEelement(UIType.Xpath, xpath);
 		try {
 			if (getElement(lblSearchUser).getText().trim().equalsIgnoreCase(username)){
@@ -268,7 +293,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * @param username the username
 	 */
 	public void clickAssignRoles(String username){
-		String xpath = "//td[text()[contains(.,'" + username + "')]]/../td[2]/a[text()[contains(.,'Assign Roles')]]";
+		String xpath = String.format(lnkAssignRole, username);
 		WebPelement lnkAssignRoles = defineEelement(UIType.Xpath, xpath);
 		logger.debug("Clicking on Assign roles");
 		getElement(lnkAssignRoles).click();
@@ -334,7 +359,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isRolesSearchArea(String role) throws Exception{
 		flag = false;
 		logger.debug("Validating Role search area");
-		String xpath = "//td/label[text()[contains(.,'" + role + "')]]";
+		String xpath = String.format(lblNameRole, role);
 		WebPelement lblRole = defineEelement(UIType.Xpath, xpath);
 		try {
 			if (getElement(lblRole).getText().trim().equalsIgnoreCase(role)){
@@ -358,7 +383,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * @throws InterruptedException the interrupted exception
 	 */
 	public void clickRolesPermission(String roleName) throws InterruptedException{
-		String xpath = "//tr/td/label[text()[contains(.,'" + roleName + "')]]/../../td[2]/a[text()[contains(.,'Permissions')]]";
+		String xpath = String.format(lnkPermission, roleName);
 		WebPelement lnkPermission = defineEelement(UIType.Xpath, xpath);
 		Thread.sleep(5000);
 		logger.debug("Clicking on role permission");
@@ -492,7 +517,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * @param role the role
 	 */
 	public void clickRolesSearchArea(String role){
-		String xpath = "//td/label[text()[contains(.,'" + role + "')]]/input[@type='checkbox']";
+		String xpath = String.format(chkRole, role);
 		WebPelement chkRole = defineEelement(UIType.Xpath, xpath);
 		logger.debug("Clicking on Role search area");
 		getElement(chkRole).click();
