@@ -1,12 +1,14 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CarbonServiceProvider.
  */
@@ -34,10 +36,13 @@ public class CarbonServiceProvider extends BasicPageObject {
 	private WebPelement btnAdConfig = defineEelement(UIType.ID, "advanced");
 	
 	/** The lnk add auth. */
-	private WebPelement lnkAddAuth = defineEelement(UIType.Xpath, "/div[@id='stepsConfRow']/table/tbody/tr/td");
+	private WebPelement lnkAddAuth = defineEelement(UIType.Xpath, "//div[@id='stepsConfRow']/table/tbody/tr/td/a");
 	
 	/** The btn authenticators. */
 	private WebPelement btnAuthenticators = defineEelement(UIType.Xpath, "//table[@id='local_auth_table_1']/thead/tr/td/select");
+	
+	/** The lnk add authentication. */
+	private WebPelement lnkAddAuthentication = defineEelement(UIType.ID, "claimMappingAddLinkss");
 	
 	/** The lbl loa. */
 	private WebPelement lblLOA = defineEelement(UIType.Xpath, "//option[contains(.,'LOA')]");
@@ -111,7 +116,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 
 		flag = false;
 		logger.debug("Validating App in SP");
-		int count = verifyListContent(UIType.Xpath, lblEdit).size();
+		int count = driver.findElements(By.xpath(lblEdit)).size();
 		Thread.sleep(sleepTime);
 		
 		try {
@@ -158,7 +163,7 @@ public class CarbonServiceProvider extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating Title Service Provider");
 		Thread.sleep(sleepTime);
-		
+
 		try {
 			if (spHeader.contains(getElement(lblHeader).getText())) {
 				flag = true;
@@ -167,11 +172,8 @@ public class CarbonServiceProvider extends BasicPageObject {
 				logger.debug("Title Service Provider is Not Matched");
 			}
 		} catch (Exception e) {
-			logger.debug("Exception While Validating Title Service Provider Page Title 'isSPpageDisplyed()'"
-					+ e.getMessage());
-			throw new Exception(
-					"Exception While Validating Title Service Provider Page Title 'isSPpageDisplyed()'"
-							+ e.getLocalizedMessage());
+			logger.debug("Exception While Validating Title Service Provider Page Title 'isSPpageDisplyed()'" + e.getMessage());
+			throw new Exception("Exception While Validating Title Service Provider Page Title 'isSPpageDisplyed()'" + e.getLocalizedMessage());
 		}
 		return flag;
 	}
@@ -275,15 +277,32 @@ public class CarbonServiceProvider extends BasicPageObject {
 		logger.debug("Clicked on Add Authintication step");
 	}
 	
+
 	/**
-	 * Click authenticators.
+	 * Select authenticator.
 	 *
 	 * @author SulakkhanaW
+	 * @param authenticationType the authentication type
+	 * @throws InterruptedException 
 	 */
-	public void clickAuthenticators(){
-		logger.debug("Clicking on Authinticators");
-		getElement(btnAuthenticators).click();
-		logger.debug("Clicked on Authinticators");
+	public void selectAuthenticator(String authenticationType) throws InterruptedException{
+		Thread.sleep(sleepTime);
+		logger.debug("Selecting on Authinticators");
+		getElement(btnAuthenticators).sendKeys(authenticationType);
+		logger.debug("Authinticators selected");
+	}
+
+	/**
+	 * Click add authentication.
+	 *
+	 * @author SulakkhanaW
+	 * @throws InterruptedException the interrupted exception
+	 */
+	public void clickAddAuthentication() throws InterruptedException{
+		logger.debug("Clicking on add authentication");
+		getElement(lnkAddAuthentication).click();
+		logger.debug("Clicked on add authentication");
+		Thread.sleep(sleepTime);
 	}
 	
 	/**
@@ -301,11 +320,14 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Click update.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickUpdate(){
+	public void clickUpdate() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Clicking on update");
 		getElement(btnUpdate).click();
 		logger.debug("Clicked on update");
+		Thread.sleep(sleepTime);
 	}
 	
 	/**
@@ -354,8 +376,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select code.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectCode(){
+	public void selectCode() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting code");
 		getElement(btnCode).click();
 		logger.debug("Selected code");
@@ -365,8 +389,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select implicit.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectImplicit(){
+	public void selectImplicit() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting Implicit");
 		getElement(btnImplicit).click();
 		logger.debug("Selected Implicit");
@@ -376,8 +402,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select password.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectPassword(){
+	public void selectPassword() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting password");
 		getElement(btnPassword).click();
 		logger.debug("Selected password");
@@ -398,8 +426,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select refresh.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectRefresh(){
+	public void selectRefresh() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting refresh");
 		getElement(btnRefresh).click();
 		logger.debug("Selected refresh");
@@ -409,8 +439,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select saml.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectSAML(){
+	public void selectSAML() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting SAML");
 		getElement(btnSAML).click();
 		logger.debug("Selected SAML");
@@ -420,8 +452,10 @@ public class CarbonServiceProvider extends BasicPageObject {
 	 * Select iwa.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void selectIWA(){
+	public void selectIWA() throws InterruptedException{
+		Thread.sleep(sleepTime);
 		logger.debug("Selecting IWA");
 		getElement(btnIWA).click();
 		logger.debug("Selected IWA");
@@ -471,8 +505,8 @@ public class CarbonServiceProvider extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating Client Key");
 		Thread.sleep(sleepTime);
-		
-			try {
+
+		try {
 			if (clientKey.contains(getElement(lblClientKey).getText())) {
 				flag = true;
 				logger.debug("Validating Client Key completed");
@@ -480,11 +514,8 @@ public class CarbonServiceProvider extends BasicPageObject {
 				logger.debug("Client Key is Not Matched");
 			}
 		} catch (Exception e) {
-			logger.debug("Exception While Validating Client Key Page Title 'isClientKeyDisplyed()'"
-					+ e.getMessage());
-			throw new Exception(
-					"Exception While Validating Client Key Page Title 'isClientKeyDisplyed()'"
-							+ e.getLocalizedMessage());
+			logger.debug("Exception While Validating Client Key Page Title 'isClientKeyDisplyed()'" + e.getMessage());
+			throw new Exception("Exception While Validating Client Key Page Title 'isClientKeyDisplyed()'" + e.getLocalizedMessage());
 		}
 		return flag;
 	}
@@ -502,20 +533,17 @@ public class CarbonServiceProvider extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating Client Secret");
 		Thread.sleep(sleepTime);
-		
-			try {
-			if (clientSec.contains(getElement(lblClientSec).getText())) {
+
+		try {
+			if (clientSec.contains(getElement(lblClientSec).getAttribute("value"))) {
 				flag = true;
 				logger.debug("Validating Client Secret completed");
 			} else {
 				logger.debug("Client Secret is Not Matched");
 			}
 		} catch (Exception e) {
-			logger.debug("Exception While Validating Client Secret Page Title 'isClientSecretDisplyed()'"
-					+ e.getMessage());
-			throw new Exception(
-					"Exception While Validating Client Secret Page Title 'isClientSecretDisplyed()'"
-							+ e.getLocalizedMessage());
+			logger.debug("Exception While Validating Client Secret Page Title 'isClientSecretDisplyed()'" + e.getMessage());
+			throw new Exception("Exception While Validating Client Secret Page Title 'isClientSecretDisplyed()'" + e.getLocalizedMessage());
 		}
 		return flag;
 	}
