@@ -1,6 +1,7 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
@@ -350,7 +351,7 @@ public class CarbonRolesPage extends BasicPageObject {
 	public boolean isRoleVisible() throws Exception{
 		flag = false;
 		logger.debug("Validating user roles are visible");
-		int count = verifyListContent(UIType.Xpath, lnkRoleVisible).size();
+		int count = driver.findElements(By.xpath(lnkRoleVisible)).size();
 		try {
 			if (count != 0){
 				flag = true;
@@ -376,7 +377,7 @@ public class CarbonRolesPage extends BasicPageObject {
 		
 		flag = false;
 		logger.debug("Validating user name is visible");
-		int count = verifyListContent(UIType.Xpath, lnkDelete).size();
+		int count = driver.findElements(By.xpath(lnkDelete)).size();
 		try {
 			if (count != 0){
 				flag = true;
