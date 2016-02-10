@@ -1,6 +1,7 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
@@ -556,7 +557,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isPublisherRole() throws Exception{
 		flag = false;
 		logger.debug("Validating publisher role asign");
-		int count = verifyListContent(UIType.Xpath, lblPublisher).size();
+		int count = driver.findElements(By.xpath(lblPublisher)).size();
 		try {
 			if (count != 0){
 				flag = true;
