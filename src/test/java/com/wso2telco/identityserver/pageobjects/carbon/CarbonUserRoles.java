@@ -1,9 +1,13 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Window;
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
@@ -344,9 +348,38 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * @author SulakkhanaW
 	 */
 	public void clickRoleSearch(){
+		
+		String parent =driver.getWindowHandle();
+		
 		logger.debug("Clicking on role search");
 		getElement(btnRoleSearch).click();
 		logger.debug("Clicked on role search");
+		
+		Set<String> winhandles = driver.getWindowHandles();
+		
+		if(winhandles.size()>2){
+			
+			ArrayList<String> elements = new ArrayList<>();
+			
+			for(String handle : winhandles){
+				
+				elements.add(handle);
+				
+			}
+			
+			if(elements.contains(parent)){
+				
+				elements.remove((elements.indexOf(parent)));
+			}
+			
+			
+		}else if (driver.findElement(By.xpath("//*[@id='messagebox-info']/p")).isDisplayed()){
+			
+			driver.findElement(By.xpath("html/body/div[3]/div[2]/button")).click();
+		}
+		
+		
+		
 	}
 	
 	/**
