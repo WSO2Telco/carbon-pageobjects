@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Window;
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
