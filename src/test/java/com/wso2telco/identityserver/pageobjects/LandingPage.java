@@ -15,22 +15,19 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement menuConfigure = defineEelement(UIType.ID, "menu-panel-button3");
 	private WebPelement lblConfigure = defineEelement(UIType.ID, "region1_configure_menu");
 	private WebPelement lnkUsersRoles = defineEelement(UIType.Xpath, ".//a[contains(text(),'Users and Roles')]");
-	private WebPelement lnkUsersRolesList = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/../li[2]/ul/li/a[text()='List']");
-	
 	private WebPelement lnkUsers = defineEelement(UIType.Xpath, ".//table[@id='internal']/tbody/tr[1]/td/a");
 	private WebPelement txtUserName = defineEelement(UIType.Name, "org.wso2.carbon.user.filter");
-	//private WebPelement btnSearch = defineEelement(UIType.Xpath, "//input[@value='Search Users']");
-	private WebPelement btnSearch = defineEelement(UIType.Xpath, ".//*[@id='workArea']/form/table/tbody/tr[2]/td[2]/input[@value='Search Users']");
-	
+	private WebPelement btnSearch = defineEelement(UIType.Xpath, ".//input[@value='Search']");
 	private WebPelement btnDelete = defineEelement(UIType.Xpath, ".//a[contains(text(),'Delete')]");
 	private WebPelement btnConfirmarionYes = defineEelement(UIType.Css, ".ui-dialog-buttonpane>button");
 	private WebPelement btnConfirmarionNoUser = defineEelement(UIType.Css, ".ui-dialog-buttonpane>button");
 	private String strBtnConfirmarionNoUser = ".ui-dialog-buttonpane>button";
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
-	private WebPelement mainBttn = defineEelement(UIType.Xpath, "//span[text()='Main']/..");
 	
-
+	
+	
+	
 	
 	
 	public LandingPage(WebDriver driver) {
@@ -62,10 +59,6 @@ public class LandingPage extends BasicPageObject  {
 		getElement(menuConfigure).click();		
 	}
 	
-	
-	public void clickMain(){
-		getElement(mainBttn).click();		
-	}
 	public boolean isConfigurePage(String pageTitle) throws Exception {
 		flag = false;
 		logInstruction("Validating Configure Label");
@@ -88,10 +81,6 @@ public class LandingPage extends BasicPageObject  {
 	
 	public void clickUserRoles(){
 		getElement(lnkUsersRoles).click();		
-	}
-	
-	public void clickUserRolesList(){
-		getElement(lnkUsersRolesList).click();		
 	}
 	
 	public void clickUsers(){
