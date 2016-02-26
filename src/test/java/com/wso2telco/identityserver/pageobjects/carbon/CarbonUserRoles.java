@@ -1,11 +1,13 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.wso2telco.identityserver.pageobjects.BasicPageObject;
 import com.wso2telco.test.framework.core.WebPelement;
@@ -74,7 +76,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	private WebPelement btnUsersViewRoles = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'View Roles')]]");
 	
 	/** The chkbx intenal publisher. */
-	private WebPelement chkbxIntenalPublisher = defineEelement(UIType.Xpath, "//td/label[text()[contains(.,'Internal/publisher')]]/input");
+	private WebPelement chkbxIntenalPublisher = defineEelement(UIType.Xpath, "//td/label[text()[contains(.,'Internal/publisher')]]/input[1]");
 	
 	/** The chkbx intenal subscriber. */
 	private WebPelement chkbxIntenalSubscriber = defineEelement(UIType.Xpath, "//td/label[text()[contains(.,'Internal/subscriber')]]/input");
@@ -589,7 +591,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isPublisherRole() throws Exception{
 		flag = false;
 		logger.debug("Validating publisher role asign");
-		int count = driver.findElements(By.xpath(lblPublisher)).size();
+		//int count = driver.findElements(By.xpath(lblPublisher)).size();
+		List<WebElement> publisher = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]"));
+		int count = publisher.size();
 		try {
 			if (count != 0){
 				flag = true;
