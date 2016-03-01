@@ -28,6 +28,7 @@ public class LandingPage extends BasicPageObject  {
 	private String strBtnConfirmarionNoUser = ".ui-dialog-buttonpane>button";
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
+	private WebPelement btndefaultUserProfile = defineEelement(UIType.Xpath, "//*[@id='workArea']/table/tbody/tr/td[1]/a");
 	private WebPelement mainBttn = defineEelement(UIType.Xpath, "//span[text()='Main']/..");
 	
 
@@ -156,6 +157,8 @@ public class LandingPage extends BasicPageObject  {
 	public UserProfile clickUserProfile() {
 		// TODO Auto-generated method stub
 		getElement(btnUserProfile).click();
+		getElement(btndefaultUserProfile).click();
+		
 		return new UserProfile(driver);
 	}
 
