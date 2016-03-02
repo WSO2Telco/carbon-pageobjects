@@ -334,10 +334,12 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * Click ok.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickOK(){
+	public void clickOK() throws InterruptedException{
 		logger.debug("Clicking on OK");
 		getElement(btnOK).click();
+		Thread.sleep(8000);
 		logger.debug("Clicked on OK");
 	}
 

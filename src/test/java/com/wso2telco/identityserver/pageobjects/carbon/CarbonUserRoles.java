@@ -1,9 +1,7 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -92,9 +90,6 @@ public class CarbonUserRoles extends BasicPageObject {
 	
 	/** The permission check box class. */
 	private String permissionCheckBoxClass = "ygtvcheck2";
-
-	/** The lbl publisher. */
-	private String lblPublisher = "//td/label[text()[contains(.,'Internal/publisher')]]";
 	
 	/** The lbl subscriber. */
 	private String lblSubscriber = "//td/label[text()[contains(.,'Internal/subscriber')]]";
@@ -258,10 +253,13 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * Click roles link.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickRolesLink(){
+	
+	public void clickRolesLink() throws InterruptedException{
 		logger.debug("Clicking on Roles link");
 		getElement(lnkRoles).click();
+		Thread.sleep(8000);
 		logger.debug("Clicked on Roles link");
 	}
 	
@@ -350,36 +348,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	 */
 	public void clickRoleSearch(){
 		
-		String parent =driver.getWindowHandle();
-		
 		logger.debug("Clicking on role search");
 		getElement(btnRoleSearch).click();
 		logger.debug("Clicked on role search");
-		
-		Set<String> winhandles = driver.getWindowHandles();
-		
-		if(winhandles.size()>2){
-			
-			ArrayList<String> elements = new ArrayList<>();
-			
-			for(String handle : winhandles){
-				
-				elements.add(handle);
-				
-			}
-			
-			if(elements.contains(parent)){
-				
-				elements.remove((elements.indexOf(parent)));
-			}
-			
-			
-		}else if (driver.findElement(By.xpath("//*[@id='messagebox-info']/p")).isDisplayed()){
-			
-			driver.findElement(By.xpath("html/body/div[3]/div[2]/button")).click();
-		}
-		
-		
 		
 	}
 	
