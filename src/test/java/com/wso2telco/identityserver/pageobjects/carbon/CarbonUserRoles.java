@@ -562,6 +562,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isPublisherRole() throws Exception{
 		flag = false;
 		logger.debug("Validating publisher role asign");
+		//int count = driver.findElements(By.xpath(lblPublisher)).size();
 		List<WebElement> publisher = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]"));
 		int count = publisher.size();
 		try {
