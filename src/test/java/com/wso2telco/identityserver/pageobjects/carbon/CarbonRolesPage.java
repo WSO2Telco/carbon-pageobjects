@@ -118,10 +118,12 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * Click add new role.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickAddNewRole(){
+	public void clickAddNewRole() throws InterruptedException{
 		logger.debug("Clicking on Add new role");
 		getElement(lnkAddRole).click();
+		Thread.sleep(20000);
 		logger.debug("Clicked on Add new role");
 	}
 	
@@ -155,10 +157,14 @@ public class CarbonRolesPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param rolename the rolename
+	 * @throws Exception 
 	 */
-	public void enterRoleName(String rolename){
+	public void enterRoleName(String rolename) throws Exception{
 		logger.debug("Entering Role name");
-		getElement(txtRoleName).clearAndSendkeys(rolename);
+		Thread.sleep(5000);
+		typeTextBox(txtRoleName, rolename);
+		//getElement(txtRoleName).clearAndSendkeys(rolename);
+		Thread.sleep(5000);
 		logger.debug("Entered Role name");
 	}
 	
@@ -166,10 +172,13 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * Click next.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickNext(){
+	public void clickNext() throws InterruptedException{
 		logger.debug("Clicking on Next");
+		Thread.sleep(2000);
 		getElement(btnNext).click();
+		Thread.sleep(12000);
 		logger.debug("Clicked on Next");
 	}
 	
@@ -228,10 +237,13 @@ public class CarbonRolesPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param searchvalue the searchvalue
+	 * @throws Exception 
 	 */
-	public void eneterSearchValue(String searchvalue){
+	public void eneterSearchValue(String searchvalue) throws Exception{
 		logger.debug("Entering search value");
-		getElement(txtSearch).clearAndSendkeys(searchvalue);
+		typeTextBox(txtSearch, searchvalue);
+		//getElement(txtSearch).clearAndSendkeys(searchvalue);
+		Thread.sleep(5000);
 		logger.debug("Entered search value");
 	}
 	
@@ -239,10 +251,12 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * Click search.
 	 *
 	 * @author SulakkhanaW
+	 * @throws InterruptedException 
 	 */
-	public void clickSearch(){
+	public void clickSearch() throws InterruptedException{
 		logger.debug("Clicking search button");
 		getElement(btnSearch).click();
+		Thread.sleep(12000);
 		logger.debug("Clicked search button");
 	}
 	
@@ -251,12 +265,14 @@ public class CarbonRolesPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param username1 the username1
+	 * @throws InterruptedException 
 	 */
-	public void selectUser(String username1){
+	public void selectUser(String username1) throws InterruptedException{
 		String xpath = String.format(btnUser, username1);
 		WebPelement btnUser =defineEelement(UIType.Xpath, xpath);
 		logger.debug("Selecting user");
 		getElement(btnUser).click();
+		Thread.sleep(12000);
 		logger.debug("Selected user");
 	}
 	
@@ -323,10 +339,14 @@ public class CarbonRolesPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param rolename the rolename
+	 * @throws Exception 
 	 */
-	public void enterAggrigatorRoleName(String rolename){
+	public void enterAggrigatorRoleName(String rolename) throws Exception{
 		logger.debug("Entering aggrigator role name");
-		getElement(txtSearchRole).clearAndSendkeys(rolename);
+		Thread.sleep(5000);
+		typeTextBox(txtSearchRole, rolename);
+		//getElement(txtSearchRole).clearAndSendkeys(rolename);
+		Thread.sleep(5000);
 		logger.debug("Entered aggrigator role name");
 	}
 	

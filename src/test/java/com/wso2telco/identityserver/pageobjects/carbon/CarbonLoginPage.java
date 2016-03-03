@@ -42,10 +42,13 @@ public class CarbonLoginPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param username the new carbon username
+	 * @throws Exception 
 	 */
-	public void setCarbonUsername(String username){
+	public void setCarbonUsername(String username) throws Exception{
 		logger.debug("Entering username");
-		getElement(txtCarbonUsername).clearAndSendkeys(username);
+		typeTextBox(txtCarbonUsername, username);
+		//getElement(txtCarbonUsername).clearAndSendkeys(username);
+		//Thread.sleep(5000);
 		logger.debug("Entered username");
 	}
 	
@@ -54,8 +57,9 @@ public class CarbonLoginPage extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param password the new carbon password
+	 * @throws InterruptedException 
 	 */
-	public void setCarbonPassword(String password){
+	public void setCarbonPassword(String password) throws InterruptedException{
 		logger.debug("Entering password");
 		getElement(txtCarbonPassword).clearAndSendkeys(password);
 		logger.debug("Entered password");
@@ -73,6 +77,7 @@ public class CarbonLoginPage extends BasicPageObject {
 			logger.debug("Start clicking on API IS login");
 			getElement(btnLogin).click();
 			logger.debug("Clicked on API IS login");
+			Thread.sleep(5000);
 		} catch (Exception e) {
 			logInstruction("Exception While clicking on IS login 'clickCarbonLogin()'" + e.getMessage());
 			throw new Exception("Exception While clicking on IS login 'clickCarbonLogin()'" + e.getLocalizedMessage());
