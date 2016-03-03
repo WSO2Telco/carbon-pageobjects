@@ -33,6 +33,15 @@ public class CarbonHomePage extends BasicPageObject {
 	/** The lnk list. */
 	private WebPelement lnkList = defineEelement(UIType.Xpath, "//div[@id='menu']/ul/li[3]/ul/li[1]/../li[2]/ul/li[2]");
 	
+	/** The lnk browse. */
+	private WebPelement lnkBrowse = defineEelement(UIType.Xpath, "//a[text()='Browse']");
+
+	/** The lbl resources. */
+	private WebPelement lblResources = defineEelement(UIType.Xpath, "//td[@id='region3']/div/ul/li[4]");
+	
+	/** The lnk resources. */
+	private WebPelement lnkResources = defineEelement(UIType.Xpath, "//td[@id='region3']/div/ul/li[3]");
+	
 	
 	/**
 	 * Instantiates a new carbon home page.
@@ -141,11 +150,8 @@ public class CarbonHomePage extends BasicPageObject {
 				logger.debug("Menu tab Not Matched");
 			}
 		} catch (Exception e) {
-			logger.debug("Exception While Validating Menu tab Page Title 'isMenuListDisplayed()'"
-					+ e.getMessage());
-			throw new Exception(
-					"Exception While Validating Menu tab Page Title 'isMenuListDisplayed()'"
-							+ e.getLocalizedMessage());
+			logger.debug("Exception While Validating Menu tab Page Title 'isMenuListDisplayed()'" + e.getMessage());
+			throw new Exception("Exception While Validating Menu tab Page Title 'isMenuListDisplayed()'" + e.getLocalizedMessage());
 		}
 		return flag;
 	}
@@ -159,6 +165,35 @@ public class CarbonHomePage extends BasicPageObject {
 		logger.debug("Clicking on list");
 		getElement(lnkList).click();
 		logger.debug("Clicked on list");
+	}
+	
+	/**
+	 * Click browse.
+	 *
+	 * @author SulakkhanaW
+	 * @throws Exception 
+	 */
+	public void clickBrowse() throws Exception{
+		logger.debug("Clicking on Browse");
+		try {
+			logger.debug("Validating Resources link already clicked");
+			if (getElement(lblResources).getAttribute("style").equalsIgnoreCase("display: none;")){
+				logger.debug("Validating Resources link is not clicked");
+				logger.debug("Clicking on resources link");
+				getElement(lnkResources).click();
+				logger.debug("Clicked on resources link");
+				getElement(lnkBrowse).click();
+				logger.debug("Clicked on Browse");
+			} else {
+				logger.debug("Validating Resources link is clicked");
+				logger.debug("Clicking on Browse");
+				getElement(lnkBrowse).click();
+				logger.debug("Clicked on Browse");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While clicking browse link 'clickBrowse()'" + e.getMessage());
+			throw new Exception("Exception While clicking browse link 'clickBrowse()'" + e.getLocalizedMessage());
+		}
 	}
 
 }
