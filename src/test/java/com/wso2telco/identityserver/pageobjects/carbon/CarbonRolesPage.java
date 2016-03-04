@@ -77,8 +77,17 @@ public class CarbonRolesPage extends BasicPageObject {
 	 **/
 	private String btnDelete = "//td[contains(.,'%s')]/following-sibling::td[1]/a[4]"; 
 	
-	 
+	/** The lnk assign users. */
+	private WebPelement lnkAssignUsers = defineEelement(UIType.Xpath, " //a[contains(.,'Assign Users')]");
 	
+	/** The txt users search. */
+	private WebPelement txtUsersSearch = defineEelement(UIType.Xpath, " //td[contains(.,'Enter user name pattern')]/following-sibling::td[1]/input");
+	
+	/** The check box user nameto assign. */
+	private String checkBoxUserNametoAssign = "//a[contains(.,'Select all on this page')]/../../following-sibling::tr[1]/td/input[@value='%s'][1]";
+	
+	/** The txt role search. */
+	private WebPelement txtRoleSearch = defineEelement(UIType.Xpath, "//td[contains(.,'Enter role name pattern')]/following-sibling::td[1]/input[1]");
 	/**
 	 * Instantiates a new carbon roles page.
 	 *
@@ -426,5 +435,74 @@ public class CarbonRolesPage extends BasicPageObject {
 		logger.debug("Clicking on delete");
 		getElement(btnDelete).click();
 		logger.debug("Clicked on delete");
+	}
+	
+	/**
+	 * Click on assign users.
+	 */
+	public void clickOnAssignUsers(){
+		logger.debug("Clicking on assign users");
+		getElement(lnkAssignUsers).click();
+		logger.debug("Clicked on assign users");
+	}
+	
+	/**
+	 * Enter username pattern.
+	 *
+	 * @param username the username
+	 */
+	public void enterUsernamePattern(String username){
+		logger.debug("Entering user name");
+		getElement(txtUsersSearch).clearAndSendkeys(username);
+		logger.debug("Entered User name");
+	}
+	
+	/**
+	 * Checks if is user name to assign visible.
+	 *
+	 * @param username the username
+	 * @return true, if is user name to assign visible
+	 * @throws Exception the exception
+	 */
+	public boolean isUserNameToAssignVisible(String username) throws Exception {
+
+		flag = false;
+		logger.debug("Validating user name is visible");
+		String xpath = String.format(checkBoxUserNametoAssign, username);
+		int count = driver.findElements(By.xpath(xpath)).size();
+		try {
+			if (count != 0) {
+				flag = true;
+				logger.debug("User name is visible");
+			} else {
+				logger.debug("User name is not visible");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating User name is visible 'isUserNameToAssignVisible()'"
+					+ e.getMessage());
+			throw new Exception(
+					"Exception While Validating User name is visible 'isUserNameToAssignVisible()'"
+							+ e.getLocalizedMessage());
+		}
+		return flag;
+	}
+	
+	/**
+	 * Select user to assign.
+	 */
+	public void selectUserToAssign(String username){
+		logger.debug("Selecting user");
+		String xpath = String.format(checkBoxUserNametoAssign, username);
+		driver.findElement(By.xpath(xpath)).click();
+		logger.debug("Selecting User");
+	}
+	
+	/**
+	 * Enter role name to search.
+	 */
+	public void enterRoleNameToSearch(String rolename){
+		logger.debug("Entering user name");
+		getElement(txtRoleSearch).clearAndSendkeys(rolename);
+		logger.debug("Entered User name");
 	}
 }
