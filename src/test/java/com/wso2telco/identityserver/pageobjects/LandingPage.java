@@ -55,7 +55,6 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
 	private WebPelement btndefaultUserProfile = defineEelement(UIType.Xpath, "//*[@id='workArea']/table/tbody/tr/td[1]/a");
 	private WebPelement mainBttn = defineEelement(UIType.Xpath, "//span[text()='Main']/..");
-	//div[@class='ui-dialog-buttonpane']/button[1]
 	private WebPelement dialogYes = defineEelement(UIType.Xpath, "//div[@class='ui-dialog-buttonpane']/button[1]");
 	
 	//private WebPelement serviceProvidersRot = defineEelement(UIType.ID, "ServiceProviders") ;
