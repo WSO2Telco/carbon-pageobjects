@@ -63,7 +63,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.wso2telco</groupId>
-			<artifactId>wso2telco.framework</artifactId>
+			<artifactId>uitest-framework</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
