@@ -64,6 +64,7 @@ public class LandingPage extends CarbonLeftNav {
 	private WebPelement btnConfirmarionNoUser = defineEelement(UIType.Css,
 			".ui-dialog-buttonpane>button");
 	private String strBtnConfirmarionNoUser = ".ui-dialog-buttonpane>button";
+
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID,
 			"messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath,
@@ -75,6 +76,7 @@ public class LandingPage extends CarbonLeftNav {
 
 	// private WebPelement serviceProvidersRot = defineEelement(UIType.ID,
 	// "ServiceProviders") ;
+
 
 	public LandingPage(WebDriver driver) {
 		super(driver);
