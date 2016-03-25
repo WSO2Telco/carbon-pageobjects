@@ -47,6 +47,15 @@ public class CarbonResourceBrowse extends BasicPageObject {
 	/** The txt rate card. */
 	private WebPelement txtRateCard = defineEelement(UIType.Xpath, "//div[@id='generalContentDiv']/textarea");
 	
+	/** The lnk upload. */
+	private WebPelement lnkUpload = defineEelement(UIType.Xpath, "//td/a[contains(.,'Upload')]");
+	
+	/** The txt upload location. */
+	private WebPelement txtUploadLocation = defineEelement(UIType.ID, "uResourceFile");
+	
+	/** The btn uplaod. */
+	private WebPelement btnUplaod = defineEelement(UIType.ID, "uploadContentButtonID");
+	
 	/**
 	 * Checks if is browse page.
 	 *
@@ -135,6 +144,24 @@ public class CarbonResourceBrowse extends BasicPageObject {
 		String ratecard = getElement(txtRateCard).getText();
 		logger.debug("Rate card text area found");
 		return ratecard;
+	}
+	
+	/**
+	 * Upload rate card.
+	 *
+	 * @author SulakkhanaW
+	 * @param filename the filename
+	 */
+	public void uploadRateCard(String filename){
+		logger.debug("Clicking on Upload link");
+		getElement(lnkUpload).click();
+		logger.debug("Clicked on Upload link");
+		logger.debug("Sending upload file name");
+		getElement(txtUploadLocation).clearAndSendkeys(filename);
+		logger.debug("Upload file name send");
+		logger.debug("Clicking on Upload button");
+		getElement(btnUplaod).click();
+		logger.debug("Clicked on Upload button");
 	}
 
 }
