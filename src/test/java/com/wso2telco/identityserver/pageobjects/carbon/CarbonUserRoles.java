@@ -119,6 +119,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	 **/
 	private String chkRole = "//td/label[text()[contains(.,'%s')]]/input[@type='checkbox']";
 	
+	/** The lnk publisher. */
+	private String lnkPublisher = "//td/label[text()[contains(.,'Internal/publisher')]]";
+	
 	/**
 	 * Instantiates a new carbon user roles.
 	 *
@@ -563,7 +566,7 @@ public class CarbonUserRoles extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating publisher role asign");
 		//int count = driver.findElements(By.xpath(lblPublisher)).size();
-		List<WebElement> publisher = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]"));
+		List<WebElement> publisher = driver.findElements(By.xpath(lnkPublisher));
 		int count = publisher.size();
 		try {
 			if (count != 0){
