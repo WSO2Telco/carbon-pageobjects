@@ -34,6 +34,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	/** The txt user search. */
 	private WebPelement txtUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='text']");
 	
+	/** The txt user search ie. */
+	private WebPelement txtUserSearchIE = defineEelement(UIType.Xpath, "//td/input[@type='text']");
+	
 	/** The btn user search. */
 	private WebPelement btnUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='submit']");
 
@@ -237,7 +240,11 @@ public class CarbonUserRoles extends BasicPageObject {
 	 */
 	public void setSearchCriteria(String username){
 		logger.debug("Entering search criteria");
-		getElement(txtUserSearch).clearAndSendkeys(username);
+		if (config.getValue("browser").equalsIgnoreCase("INTERNETEXPLORER")){
+			getElement(txtUserSearchIE).clearAndSendkeys(username);
+		} else {
+			getElement(txtUserSearch).clearAndSendkeys(username);
+		}
 		logger.debug("Entered search criteria");
 	}
 	
