@@ -418,6 +418,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isRolePermissionPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Role permission page");
+		Thread.sleep(sleepTime);
 		try {
 			if (getElement(lblRolePermission).getText().trim().contains(lblText)){
 				flag = true;
