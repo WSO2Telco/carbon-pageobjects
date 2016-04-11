@@ -34,6 +34,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	/** The txt user search. */
 	private WebPelement txtUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='text']");
 	
+	/** The txt user search ie. */
+	private WebPelement txtUserSearchIE = defineEelement(UIType.Xpath, "//td/input[@type='text']");
+	
 	/** The btn user search. */
 	private WebPelement btnUserSearch = defineEelement(UIType.Xpath, "//td[text()[contains(.,'Enter user name pattern (* for all)')]]/../td/input[@type='submit']");
 
@@ -118,6 +121,9 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * %s_1 = role
 	 **/
 	private String chkRole = "//td/label[text()[contains(.,'%s')]]/input[@type='checkbox']";
+	
+	/** The lnk publisher. */
+	private String lnkPublisher = "//td/label[text()[contains(.,'Internal/publisher')]]";
 	
 	/**
 	 * Instantiates a new carbon user roles.
@@ -234,7 +240,11 @@ public class CarbonUserRoles extends BasicPageObject {
 	 */
 	public void setSearchCriteria(String username){
 		logger.debug("Entering search criteria");
-		getElement(txtUserSearch).clearAndSendkeys(username);
+		if (config.getValue("browser").equalsIgnoreCase("INTERNETEXPLORER")){
+			getElement(txtUserSearchIE).clearAndSendkeys(username);
+		} else {
+			getElement(txtUserSearch).clearAndSendkeys(username);
+		}
 		logger.debug("Entered search criteria");
 	}
 	
@@ -408,6 +418,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	public boolean isRolePermissionPage(String lblText) throws Exception{
 		flag = false;
 		logger.debug("Validating Role permission page");
+		Thread.sleep(sleepTime);
 		try {
 			if (getElement(lblRolePermission).getText().trim().contains(lblText)){
 				flag = true;
@@ -563,7 +574,7 @@ public class CarbonUserRoles extends BasicPageObject {
 		flag = false;
 		logger.debug("Validating publisher role asign");
 		//int count = driver.findElements(By.xpath(lblPublisher)).size();
-		List<WebElement> publisher = driver.findElements(By.xpath("//td/label[text()[contains(.,'Internal/publisher')]]"));
+		List<WebElement> publisher = driver.findElements(By.xpath(lnkPublisher));
 		int count = publisher.size();
 		try {
 			if (count != 0){
