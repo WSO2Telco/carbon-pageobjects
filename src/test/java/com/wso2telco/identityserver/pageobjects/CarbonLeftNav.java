@@ -14,9 +14,7 @@ public class CarbonLeftNav extends BasicPageObject {
 			"menu-panel-button3");
 	private WebPelement lnkUsersRoles = defineEelement(UIType.Xpath,
 			".//a[contains(text(),'Users and Roles')]");
-	private WebPelement lnkUsersRolesList = defineEelement(
-			UIType.Xpath,
-			"//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='List']");
+	private WebPelement lnkUsersRolesList = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='List']");
 	private WebPelement lnkServiceProviderList = defineEelement(
 			UIType.Xpath,
 			"//ul[@class='main']//li[contains(text(),'Service Providers')]/following-sibling::li[1]/ul/li/a[text()='List']");
