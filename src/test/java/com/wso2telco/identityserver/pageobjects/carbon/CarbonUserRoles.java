@@ -56,10 +56,10 @@ public class CarbonUserRoles extends BasicPageObject {
 	private WebPelement lblRolePermission = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
 	/** The chk publisher role. */
-	private WebPelement chkPublisherRole = defineEelement(UIType.ID, "ygtvcheck132");
+	private WebPelement chkPublisherRole = defineEelement(UIType.ID, "ygtvcheck90");
 	
 	/** The chk create role. */
-	private WebPelement chkCreateRole = defineEelement(UIType.ID, "ygtvcheck133");
+	private WebPelement chkCreateRole = defineEelement(UIType.ID, "ygtvcheck91");
 	
 	/** The btn update. */
 	private WebPelement btnUpdate = defineEelement(UIType.Xpath, "//input[@value='Update']");
