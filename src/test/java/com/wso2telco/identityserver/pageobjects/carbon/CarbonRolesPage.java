@@ -41,7 +41,10 @@ public class CarbonRolesPage extends BasicPageObject {
 	private WebPelement txtSearch = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.assign.filter']");
 	
 	/** The btn search. */
-	private WebPelement btnSearch = defineEelement(UIType.Xpath, "//input[@value='Search']");
+	private WebPelement btnSearch = defineEelement(UIType.Xpath, "//input[@value='Search Roles']");
+	
+	/** The btn seajch user. */
+	private WebPelement btnSeachUser = defineEelement(UIType.Xpath, "//input[@value='Search Users']");
 	
 	/** The btn finish. */
 	private WebPelement btnFinish = defineEelement(UIType.Xpath, "//input[@value='Finish']");
@@ -265,6 +268,18 @@ public class CarbonRolesPage extends BasicPageObject {
 	public void clickSearch() throws InterruptedException{
 		logger.debug("Clicking search button");
 		getElement(btnSearch).click();
+		Thread.sleep(12000);
+		logger.debug("Clicked search button");
+	}
+	
+	/**
+	 * Click search users.
+	 *
+	 * @throws InterruptedException the interrupted exception
+	 */
+	public void clickSearchUsers() throws InterruptedException{
+		logger.debug("Clicking search button");
+		getElement(btnSeachUser).click();
 		Thread.sleep(12000);
 		logger.debug("Clicked search button");
 	}

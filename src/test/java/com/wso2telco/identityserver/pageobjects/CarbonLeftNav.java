@@ -15,6 +15,7 @@ public class CarbonLeftNav extends BasicPageObject {
 	private WebPelement lnkUsersRoles = defineEelement(UIType.Xpath,
 			".//a[contains(text(),'Users and Roles')]");
 	private WebPelement lnkUsersRolesList = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='List']");
+	private WebPelement lnkUserRolesAdd = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='Add']");
 	private WebPelement lnkServiceProviderList = defineEelement(
 			UIType.Xpath,
 			"//ul[@class='main']//li[contains(text(),'Service Providers')]/following-sibling::li[1]/ul/li/a[text()='List']");
@@ -45,6 +46,10 @@ public class CarbonLeftNav extends BasicPageObject {
 
 	public void clickUserRolesList() {
 		getElement(lnkUsersRolesList).click();
+	}
+	
+	public void clickUserRolesAdd(){
+		getElement(lnkUserRolesAdd).click();
 	}
 
 	public void clickServiceProviderList() {

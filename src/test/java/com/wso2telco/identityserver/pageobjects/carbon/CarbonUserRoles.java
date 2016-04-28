@@ -20,7 +20,7 @@ public class CarbonUserRoles extends BasicPageObject {
 	Logger logger = Logger.getLogger(CarbonUserRoles.class);
 	
 	/** The lnk user roles. */
-	private WebPelement lnkUserRoles = defineEelement(UIType.Xpath, "//a[@href='../userstore/index.jsp?region=region1&item=userstores_menu']");
+	private WebPelement lnkUserRoles = defineEelement(UIType.Xpath, "//div[@id='middle']/h2");
 	
 	/** The lnk users. */
 	private WebPelement lnkUsers = defineEelement(UIType.Xpath, "//td/a[text()[contains(.,'Users')]]");
