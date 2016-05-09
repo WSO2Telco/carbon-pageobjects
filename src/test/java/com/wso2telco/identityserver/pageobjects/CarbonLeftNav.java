@@ -9,21 +9,17 @@ public class CarbonLeftNav extends BasicPageObject {
 
 	private WebPelement mainBttn = defineEelement(UIType.Xpath,
 			"//span[text()='Main']/..");
-	private WebPelement lblUsername = defineEelement(UIType.Xpath,
-			".//div[@id='middle']/h2");
+	//private WebPelement lblUsername = defineEelement(UIType.Xpath, ".//div[@id='middle']/h2");
 	private WebPelement menuConfigure = defineEelement(UIType.ID,
 			"menu-panel-button3");
 	private WebPelement lnkUsersRoles = defineEelement(UIType.Xpath,
 			".//a[contains(text(),'Users and Roles')]");
-	private WebPelement lnkUsersRolesList = defineEelement(
-			UIType.Xpath,
-			"//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='List']");
+	private WebPelement lnkUsersRolesList = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='List']");
+	private WebPelement lnkUserRolesAdd = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Users and Roles')]/following-sibling::li[1]/ul/li/a[text()='Add']");
 	private WebPelement lnkServiceProviderList = defineEelement(
 			UIType.Xpath,
 			"//ul[@class='main']//li[contains(text(),'Service Providers')]/following-sibling::li[1]/ul/li/a[text()='List']");
-	private WebPelement lnkServiceProviderAdd = defineEelement(
-			UIType.Xpath,
-			"//ul[@class='main']//li[contains(text(),'Service Providers')]/following-sibling::li[1]/ul/li/a[text()='Add']");
+	//private WebPelement lnkServiceProviderAdd = defineEelement(UIType.Xpath, "//ul[@class='main']//li[contains(text(),'Service Providers')]/following-sibling::li[1]/ul/li/a[text()='Add']");
 	private WebPelement lnkClaimList = defineEelement(
 			UIType.Xpath,
 			"//ul[@class='main']//li[contains(text(),'Claims')]/following-sibling::li[1]/ul/li/a[text()='List']");
@@ -50,6 +46,10 @@ public class CarbonLeftNav extends BasicPageObject {
 
 	public void clickUserRolesList() {
 		getElement(lnkUsersRolesList).click();
+	}
+	
+	public void clickUserRolesAdd(){
+		getElement(lnkUserRolesAdd).click();
 	}
 
 	public void clickServiceProviderList() {
