@@ -1,5 +1,10 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -151,17 +156,70 @@ public class CarbonResourceBrowse extends BasicPageObject {
 	 *
 	 * @author SulakkhanaW
 	 * @param filename the filename
+	 * @throws InterruptedException 
 	 */
-	public void uploadRateCard(String filename){
+	public void uploadRateCard(String filename) throws InterruptedException{
 		logger.debug("Clicking on Upload link");
 		getElement(lnkUpload).click();
 		logger.debug("Clicked on Upload link");
-		logger.debug("Sending upload file name");
-		getElement(txtUploadLocation).clearAndSendkeys(filename);
-		logger.debug("Upload file name send");
+		Thread.sleep(sleepTime);
+		String browserType = config.getValue("browser");
+		if (browserType.equals("FIREFOX")){
+			logger.debug("Sending upload file name");
+			selectFileFFox(filename);
+			logger.debug("Upload file name send");	
+		} else {
+			logger.debug("Sending upload file name");
+			getElement(txtUploadLocation).clearAndSendkeys(filename);
+			logger.debug("Upload file name send");			
+		}		
 		logger.debug("Clicking on Upload button");
+		Thread.sleep(sleepTime);
 		getElement(btnUplaod).click();
 		logger.debug("Clicked on Upload button");
+	}
+	
+	/**
+	 * Select file ff.
+	 *
+	 * @param filePath the file path
+	 * @throws InterruptedException 
+	 */
+	public void selectFileFFox(String filePath) throws InterruptedException{
+		String file  = filePath.replaceAll("/", "\\\\");
+		getElement(txtUploadLocation).click();
+		Thread.sleep(sleepTime);
+		selectFileFromPopup(file);
+	}
+	
+	/**
+	 * Select file from popup.
+	 *
+	 * @param filePath the file path
+	 */
+	public static void selectFileFromPopup(String filePath){
+		setClipboardData(filePath);
+		try {
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the clipboard data.
+	 *
+	 * @param filePath the new clipboard data
+	 */
+	public static void setClipboardData(String filePath){
+		StringSelection stringSelection = new StringSelection(filePath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 	}
 
 }
