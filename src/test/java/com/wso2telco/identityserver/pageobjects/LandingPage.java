@@ -3,9 +3,11 @@ package com.wso2telco.identityserver.pageobjects;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.google.common.collect.Table;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
@@ -24,6 +26,7 @@ public class LandingPage extends BasicPageObject  {
 	private String strBtnConfirmarionNoUser = ".ui-dialog-buttonpane>button";
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
+	private String tableUserNameCell= "//table[@id='userTable']//tr/td[contains(.,'%s')]";
 	
 	
 	
@@ -147,7 +150,35 @@ public class LandingPage extends BasicPageObject  {
 		getElement(btnUserProfile).click();
 		return new UserProfile(driver);
 	}
+/**
+ * @author Achiniuj
+ * @param msisdn
+ * @return
+ * @throws Throwable
+ */
+	public boolean isUserTableUpdated(String msisdn) throws Throwable {
+		flag = false;
+		logInstruction("Validating user is at user table");
+		try {
+			String xpath = String.format(tableUserNameCell, msisdn);
+			List<WebElement> number = driver.findElements(By.xpath(xpath));
 
+			if (number.size() == 1) {
+				logInstruction("Validated user is at user table");
+				return true;
 
+			} else {
+				logInstruction("user is not at user table");
+			}
+		} catch (Exception e) {
+			logInstruction("Exception While Validating user table 'isUserTableUpdated'"
+					+ e.getMessage());
+			throw new Exception(
+					"Exception While Validating user table 'isUserTableUpdated'"
+							+ e.getLocalizedMessage());
+		}
+		return false;
+
+	}
 	
 }
