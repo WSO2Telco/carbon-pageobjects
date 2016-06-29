@@ -2,12 +2,10 @@ package com.wso2telco.identityserver.pageobjects;
 
 import java.util.List;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.google.common.collect.Table;
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
