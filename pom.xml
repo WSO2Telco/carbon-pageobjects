@@ -12,7 +12,7 @@
 	</properties>
 
 	<build>
-		<sourceDirectory>src/test/java</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
 <!-- 		<resources> -->
 <!-- 			<resource> -->
 <!-- 				<directory>src/resources</directory> -->
