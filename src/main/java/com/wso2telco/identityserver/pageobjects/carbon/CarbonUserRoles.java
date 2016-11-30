@@ -125,6 +125,32 @@ public class CarbonUserRoles extends BasicPageObject {
 	/** The lnk publisher. */
 	private String lnkPublisher = "//td/label[text()[contains(.,'Internal/publisher')]]";
 	
+	/** The lnk Add New User*/
+	private WebPelement lnkAddNewUser = defineEelement(UIType.Xpath, "//a[contains(.,'Add New User')]");
+	
+	/** The txt username*/
+	private WebPelement txtUsername = defineEelement(UIType.Name, "username");
+	
+	/** The txt password*/
+	private WebPelement txtPassword = defineEelement(UIType.Name, "password");
+	
+	/** The txt password repeat*/
+	private WebPelement txtPasswordRepeat = defineEelement(UIType.Name, "retype");
+	
+	/** The lbl enter usename. */
+	private WebPelement lblEnterUserNAme = defineEelement(UIType.Xpath, "//div[@id='middle']/div/h3");
+	
+	/** The btn next. */
+	private WebPelement btnNext = defineEelement(UIType.Xpath, "//input[@value='Next >']");
+	
+	/** The chk UserofRole*/
+	private String chkUsersOfRole = "//input[@value='%s' and @type='checkbox']";
+	
+	/** The lbl select roles for user */
+	private WebPelement lblSelectRoles = defineEelement(UIType.Xpath, "//div[@id='workArea']/h3");
+	
+	/** The lbl success message*/
+	private WebPelement lblUserCreationSuccess = defineEelement(UIType.Xpath, "//span[@class='ui-dialog-title']");
 	/**
 	 * Instantiates a new carbon user roles.
 	 *
@@ -691,5 +717,168 @@ public class CarbonUserRoles extends BasicPageObject {
 		getElement(btnEditRoleSuccessOk).click();
 		logger.debug("Clicked edit roles success message");
 	}
+	
+	
+	/**
+	 * Click add new user.
+	 *
+	 * @author MalshaniS
+	 * @throws InterruptedException 
+	 */
+	public void clickAddNewUser() throws InterruptedException{
+		logger.debug("Clicking on Add new user");
+		getElement(lnkAddNewUser).click();
+		Thread.sleep(20000);
+		logger.debug("Clicked on Add new user");
+	}
+	
+	/**
+	 * Enter User Name
+	 * 
+	 * @author MalshaniS
+	 * @param userName the userName
+	 * @throws Exception
+	 */
+	public void enterUserName(String userName) throws Exception{
+		logger.debug("Entering User Name");
+		getElement(txtUsername).clearAndSendkeys(userName);
+		Thread.sleep(1000);
+		logger.debug("Entered User Name");
+	}
+	
+	/**
+	 * Enter User Password and Repeat Password
+	 * 
+	 * @author MalshaniS
+	 * @param password the password
+	 * @throws Exception
+	 */
+	public void enterPassword(String password) throws Exception{
+		logger.debug("Entering Password");
+		getElement(txtPassword).clearAndSendkeys(password);
+		Thread.sleep(1000);
+		logger.debug("Entered Password");
+	}
+	
+	/**
+	 * Enter User Password and Repeat Password
+	 * 
+	 * @author MalshaniS
+	 * @param password the password
+	 * @throws Exception
+	 */
+	public void enterRepeatPassword(String password) throws Exception{
+		logger.debug("Entering Repeat Password");
+		getElement(txtPasswordRepeat).clearAndSendkeys(password);
+		Thread.sleep(1000);
+		logger.debug("Entered Repeat Password");
+	}
 
+	/**
+	 * Checks if is Add User page.
+	 *
+	 * @author MalshaniS
+	 * @param pageHeader the pageHeader
+	 * @return true, if is Add User page
+	 * @throws Exception the exception
+	 */
+	public boolean isAddUsersPage(String pageHeader) throws Exception{
+		flag = false;
+		logger.debug("Validating Add User page");
+		try {
+			if (getElement(lblEnterUserNAme).getText().equalsIgnoreCase(pageHeader)){
+				flag = true;
+				logger.debug("Add User page loaded properly");
+			} else {
+				logger.debug("Add User page not loaded properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Add User page 'isAddUsersPage()'" + e.getMessage());
+			throw new Exception("Exception While Validating Add User page 'isAddUsersPage()'" + e.getLocalizedMessage());
+		}
+		return flag;
+	}
+	
+	/**
+	 * Click next.
+	 *
+	 * @author MalshaniS
+	 * @throws InterruptedException 
+	 */
+	public void clickNext() throws InterruptedException{
+		logger.debug("Clicking on Next");
+		getElement(btnNext).click();
+		Thread.sleep(sleepTime);
+		logger.debug("Clicked on Next");
+	}
+	
+	/**
+	 * Select Roles for user
+	 * 
+	 * @author MalshaniS
+	 * @param role the role
+	 * @throws Exception
+	 */
+	public void selectRolesForUser(String role) throws Exception{
+		logger.debug("Selecting Roles for user");
+		String[] rolesList = role.split(",");
+		
+		for(int i=0; i<rolesList.length; i++){
+			String xpath = String.format(chkUsersOfRole, rolesList[i]);
+			WebPelement chkUsersOfRole = defineEelement(UIType.Xpath, xpath);		
+			getElement(chkUsersOfRole).click();
+			Thread.sleep(1000);
+		}		
+		logger.debug("Select Roles for user");
+	}
+	
+	/**
+	 * Checks if is select Roles for user.
+	 *
+	 * @author MalshaniS
+	 * @param pageHeader the pageHeader
+	 * @return true, if is select roles for user page
+	 * @throws Exception the exception
+	 */
+	public boolean isSelectRoles(String pageHeader) throws Exception{
+		flag = false;
+		logger.debug("Validating select roles for user page");
+		try {
+			if (getElement(lblSelectRoles).getText().equalsIgnoreCase(pageHeader)){
+				flag = true;
+				logger.debug("Select roles for user page loaded properly");
+			} else {
+				logger.debug("Select roles for user page not loaded properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating select roles for user page 'isSelectRoles()'" + e.getMessage());
+			throw new Exception("Exception While Validating select roles for user page 'isSelectRoles()'" + e.getLocalizedMessage());
+		}
+		return flag;
+	}
+
+	/**
+	 * Checks if is success popup.
+	 *
+	 * @author MalshaniS
+	 * @param msg the msg
+	 * @return true, if is success popup
+	 * @throws Exception the exception
+	 */
+	public boolean isUserCreationSuccess(String msg) throws Exception{
+		flag = false;
+		logger.debug("Validating Success popup");
+		try {
+			if (getElement(lblUserCreationSuccess).getText().equalsIgnoreCase(msg)){
+				flag = true;
+				logger.debug("Success popup load properly");
+			} else {
+				logger.debug("Success popup not load properly");
+			}
+		} catch (Exception e) {
+			logger.debug("Exception While Validating Success popup 'isUserCreationSuccess()'" + e.getMessage());
+			throw new Exception("Exception While Validating Success popup 'isUserCreationSuccess()'" + e.getLocalizedMessage());
+		}
+		return flag;
+	}
 }

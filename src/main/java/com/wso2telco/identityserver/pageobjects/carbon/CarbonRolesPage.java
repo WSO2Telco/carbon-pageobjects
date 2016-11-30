@@ -91,6 +91,9 @@ public class CarbonRolesPage extends BasicPageObject {
 	
 	/** The txt role search. */
 	private WebPelement txtRoleSearch = defineEelement(UIType.Xpath, "//td[contains(.,'Enter role name pattern')]/following-sibling::td[1]/input[1]");
+	
+
+	
 	/**
 	 * Instantiates a new carbon roles page.
 	 *
@@ -520,4 +523,5 @@ public class CarbonRolesPage extends BasicPageObject {
 		getElement(txtRoleSearch).clearAndSendkeys(rolename);
 		logger.debug("Entered User name");
 	}
+
 }
