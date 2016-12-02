@@ -105,6 +105,9 @@ public class CarbonRolesPage extends BasicPageObject {
 	
 	/** The chk API List Permission*/
 	private WebPelement chkAPIListPermission = defineEelement(UIType.Xpath, "//span[text()='APIs']/../../../../following-sibling::div/div/table/tbody/tr/td/span[text()='List']/../preceding-sibling::td[contains(@class,'check')]");
+	
+	private WebPelement chkAPIPublishPermission = defineEelement(UIType.Xpath, "//span[text()='API']/../../../../following-sibling::div/div/table/tbody/tr/td/span[text()='Publish']/../preceding-sibling::td[contains(@class,'check')]");
+	
 	/**
 	 * Instantiates a new carbon roles page.
 	 *
@@ -549,11 +552,16 @@ public class CarbonRolesPage extends BasicPageObject {
 		String[] permissionList = permission.split(",");	
 		
 		for(int i=0; i<permissionList.length; i++){
-			
-			String xpath = String.format(chkPermission, permissionList[i]);
-			WebPelement chkPermission = defineEelement(UIType.Xpath, xpath);
-			getElement(chkPermission).click();
-		}	
+			if(permissionList[i].contains("Publish")){
+				getElement(chkAPIPublishPermission).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			}	
+			else{
+				String xpath = String.format(chkPermission, permissionList[i]);
+				WebPelement chkPermission = defineEelement(UIType.Xpath, xpath);
+				getElement(chkPermission).click();
+			}
+		}
 
 		logger.debug("Select Role Permissions");
 	}
