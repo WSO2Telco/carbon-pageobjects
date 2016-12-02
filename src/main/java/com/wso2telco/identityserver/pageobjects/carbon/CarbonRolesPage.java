@@ -63,6 +63,9 @@ public class CarbonRolesPage extends BasicPageObject {
 	/** The txt search role. */
 	private WebPelement txtSearchRole = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.filter']");
 	
+	/** The txt search role. */
+	private WebPelement txtSearchUsers = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.user.filter']");
+	
 	/** The btn ok. */
 	private WebPelement btnOK = defineEelement(UIType.Xpath, "//button[contains(text(),'OK')]");
 	
@@ -184,10 +187,10 @@ public class CarbonRolesPage extends BasicPageObject {
 	 */
 	public void enterRoleName(String rolename) throws Exception{
 		logger.debug("Entering Role name");
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		typeTextBox(txtRoleName, rolename);
 		//getElement(txtRoleName).clearAndSendkeys(rolename);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		logger.debug("Entered Role name");
 	}
 	
@@ -199,9 +202,8 @@ public class CarbonRolesPage extends BasicPageObject {
 	 */
 	public void clickNext() throws InterruptedException{
 		logger.debug("Clicking on Next");
-		Thread.sleep(2000);
 		getElement(btnNext).click();
-		Thread.sleep(12000);
+		Thread.sleep(2000);
 		logger.debug("Clicked on Next");
 	}
 	
@@ -556,4 +558,19 @@ public class CarbonRolesPage extends BasicPageObject {
 		logger.debug("Select Role Permissions");
 	}
 
+	/**
+	 * Enter aggrigator role name.
+	 *
+	 * @author SulakkhanaW
+	 * @param rolename the rolename
+	 * @throws Exception 
+	 */
+	public void enterUsersName(String rolename) throws Exception{
+		logger.debug("Entering Users Name");
+		Thread.sleep(3000);
+		typeTextBox(txtSearchUsers, rolename);
+		//getElement(txtSearchRole).clearAndSendkeys(rolename);
+		Thread.sleep(3000);
+		logger.debug("Entered Users Name");
+	}
 }

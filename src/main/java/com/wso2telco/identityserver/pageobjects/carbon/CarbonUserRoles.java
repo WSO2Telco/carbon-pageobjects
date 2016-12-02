@@ -546,10 +546,12 @@ public class CarbonUserRoles extends BasicPageObject {
 	 * Click ok.
 	 *
 	 * @author SulakkhanaW
+	 * @throws Exception 
 	 */
-	public void clickOK(){
+	public void clickOK() throws Exception{
 		logger.debug("Clicking on OK");
 		getElement(btnSuccessOk).click();
+		Thread.sleep(1000);
 		logger.debug("Clicked on update");
 	}
 	
