@@ -1,9 +1,14 @@
 package com.wso2telco.identityserver.pageobjects;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
+
+import junit.framework.Assert;
+
+
 
 public class LandingPage extends BasicPageObject  {
 	
@@ -18,11 +23,7 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement btnConfirmarionYes = defineEelement(UIType.Css, ".ui-dialog-buttonpane>button");
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
-	
-	
-	
-	
-	
+
 	
 	public LandingPage(WebDriver driver) {
 		super(driver);
@@ -122,7 +123,4 @@ public class LandingPage extends BasicPageObject  {
 		getElement(btnUserProfile).click();
 		return new UserProfile(driver);
 	}
-
-
-	
 }

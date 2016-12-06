@@ -1,5 +1,7 @@
 package com.wso2telco.identityserver.pageobjects.carbon;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -61,6 +63,9 @@ public class CarbonRolesPage extends BasicPageObject {
 	/** The txt search role. */
 	private WebPelement txtSearchRole = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.role.filter']");
 	
+	/** The txt search role. */
+	private WebPelement txtSearchUsers = defineEelement(UIType.Xpath, "//input[@name='org.wso2.carbon.user.filter']");
+	
 	/** The btn ok. */
 	private WebPelement btnOK = defineEelement(UIType.Xpath, "//button[contains(text(),'OK')]");
 	
@@ -91,6 +96,18 @@ public class CarbonRolesPage extends BasicPageObject {
 	
 	/** The txt role search. */
 	private WebPelement txtRoleSearch = defineEelement(UIType.Xpath, "//td[contains(.,'Enter role name pattern')]/following-sibling::td[1]/input[1]");
+	
+	/** The chk role permission*/
+	private String chkPermission = "//span[text()='%s']/../preceding-sibling::td[contains(@class,'check')]";
+	
+	/** The chk API Add Permission*/
+	private WebPelement chkAPIAddPermission = defineEelement(UIType.Xpath, "//span[text()='APIs']/../../../../following-sibling::div/div/table/tbody/tr/td/span[text()='Add']/../preceding-sibling::td[contains(@class,'check')]");
+	
+	/** The chk API List Permission*/
+	private WebPelement chkAPIListPermission = defineEelement(UIType.Xpath, "//span[text()='APIs']/../../../../following-sibling::div/div/table/tbody/tr/td/span[text()='List']/../preceding-sibling::td[contains(@class,'check')]");
+	
+	private WebPelement chkAPIPublishPermission = defineEelement(UIType.Xpath, "//span[text()='API']/../../../../following-sibling::div/div/table/tbody/tr/td/span[text()='Publish']/../preceding-sibling::td[contains(@class,'check')]");
+	
 	/**
 	 * Instantiates a new carbon roles page.
 	 *
@@ -173,10 +190,10 @@ public class CarbonRolesPage extends BasicPageObject {
 	 */
 	public void enterRoleName(String rolename) throws Exception{
 		logger.debug("Entering Role name");
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		typeTextBox(txtRoleName, rolename);
 		//getElement(txtRoleName).clearAndSendkeys(rolename);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		logger.debug("Entered Role name");
 	}
 	
@@ -188,9 +205,8 @@ public class CarbonRolesPage extends BasicPageObject {
 	 */
 	public void clickNext() throws InterruptedException{
 		logger.debug("Clicking on Next");
-		Thread.sleep(2000);
 		getElement(btnNext).click();
-		Thread.sleep(12000);
+		Thread.sleep(2000);
 		logger.debug("Clicked on Next");
 	}
 	
@@ -288,10 +304,12 @@ public class CarbonRolesPage extends BasicPageObject {
 	 * Select user.
 	 *
 	 * @author SulakkhanaW
+	 *
 	 * @param username1 the username1
 	 * @throws InterruptedException 
 	 */
 	public void selectUser(String username1) throws InterruptedException{
+		
 		String xpath = String.format(btnUser, username1);
 		WebPelement btnUser =defineEelement(UIType.Xpath, xpath);
 		logger.debug("Selecting user");
@@ -519,5 +537,48 @@ public class CarbonRolesPage extends BasicPageObject {
 		logger.debug("Entering user name");
 		getElement(txtRoleSearch).clearAndSendkeys(rolename);
 		logger.debug("Entered User name");
+	}
+	
+	
+	
+	public void selectRolePermission(String permission){
+		logger.debug("Selecting Role Permissions");
+		
+		getElement(chkAPIAddPermission).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		getElement(chkAPIListPermission).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		String[] permissionList = permission.split(",");	
+		
+		for(int i=0; i<permissionList.length; i++){
+			if(permissionList[i].contains("Publish")){
+				getElement(chkAPIPublishPermission).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			}	
+			else{
+				String xpath = String.format(chkPermission, permissionList[i]);
+				WebPelement chkPermission = defineEelement(UIType.Xpath, xpath);
+				getElement(chkPermission).click();
+			}
+		}
+
+		logger.debug("Select Role Permissions");
+	}
+
+	/**
+	 * Enter aggrigator role name.
+	 *
+	 * @author SulakkhanaW
+	 * @param rolename the rolename
+	 * @throws Exception 
+	 */
+	public void enterUsersName(String rolename) throws Exception{
+		logger.debug("Entering Users Name");
+		Thread.sleep(3000);
+		typeTextBox(txtSearchUsers, rolename);
+		//getElement(txtSearchRole).clearAndSendkeys(rolename);
+		Thread.sleep(3000);
+		logger.debug("Entered Users Name");
 	}
 }
