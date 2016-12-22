@@ -5,6 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
@@ -26,10 +28,7 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
 	private String tableUserNameCell= "//table[@id='userTable']//tr/td[contains(.,'%s')]";
 	
-	
-	
-	
-	
+
 	
 	public LandingPage(WebDriver driver) {
 		super(driver);
@@ -101,6 +100,7 @@ public class LandingPage extends BasicPageObject  {
 		flag = false;
 		logInstruction("Validating IS Home Page");
 		try {
+			
 			List<WebElement> found = driver.findElements(getBy(UIType.Css,strBtnConfirmarionNoUser));
 			if (found.size() > 0) {
 				getElement(btnConfirmarionNoUser).click();
@@ -179,4 +179,5 @@ public class LandingPage extends BasicPageObject  {
 
 	}
 	
+
 }
