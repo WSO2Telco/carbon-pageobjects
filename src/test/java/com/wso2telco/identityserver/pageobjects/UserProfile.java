@@ -19,7 +19,7 @@ public class UserProfile extends BasicPageObject  {
 	}
 	
 	public void sendPin(String pin){
-		getElement(txtPin).sendKeys(pin);		
+		getElement(txtPin).sendKeys(pin);	
 	}
 	
 	
