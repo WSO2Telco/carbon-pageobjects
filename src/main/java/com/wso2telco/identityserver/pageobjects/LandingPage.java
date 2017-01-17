@@ -1,12 +1,9 @@
 package com.wso2telco.identityserver.pageobjects;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.wso2telco.test.framework.core.WebPelement;
 import com.wso2telco.test.framework.util.UIType;
 
-import junit.framework.Assert;
 
 
 
