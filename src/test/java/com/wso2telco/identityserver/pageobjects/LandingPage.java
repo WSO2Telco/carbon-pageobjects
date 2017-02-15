@@ -15,6 +15,8 @@ import com.wso2telco.test.framework.util.UIType;
 
 public class LandingPage extends BasicPageObject  {
 	
+	//public String appName = "";
+	//public String sp ;
 	private WebPelement lblUsername = defineEelement(UIType.Xpath, ".//div[@id='middle']/h2");
 	private WebPelement menuConfigure = defineEelement(UIType.ID, "menu-panel-button3");
 	private WebPelement lblConfigure = defineEelement(UIType.ID, "region1_configure_menu");
@@ -29,8 +31,14 @@ public class LandingPage extends BasicPageObject  {
 	private WebPelement lblNoUserMessage = defineEelement(UIType.ID, "messagebox-info");
 	private WebPelement btnUserProfile = defineEelement(UIType.Xpath, ".//a[contains(text(),'Profile')]");
 	private String tableUserNameCell= "//table[@id='userTable']//tr/td[contains(.,'%s')]";
-
-
+	private WebPelement lnkSPList = defineEelement(UIType.Xpath, "//li[contains(text(),'Service Providers')]/following-sibling::li[1]//ul//li[2]//a");
+	//private WebPelement btnEditApp_APPname= defineEelement(UIType.Xpath,"//td[contains(text(),'"+sp+"')]/following-sibling::td[2]//a[1]");
+	private WebPelement menuInbound_Authentication_Configuration = defineEelement(UIType.Xpath, "//h2[@id='app_authentication_head']/a");
+	private WebPelement menuOAuth_OpenID_Connect_Configuration = defineEelement(UIType.Xpath, "//h2[@id='oauth.config.head']/a");
+	private WebPelement btnEdit_OAuth_OpenID_Connect_Configuration = defineEelement(UIType.Xpath, "//*[@id='samlTable']/tbody/tr/td[3]/a[1]");
+	private WebPelement txtCallBack = defineEelement(UIType.Xpath, "//input[@id='callback']");
+	private WebPelement btnUpdate = defineEelement(UIType.Xpath, "//input[@value='Update']");
+	
 	
 	public LandingPage(WebDriver driver) {
 		super(driver);
@@ -60,6 +68,41 @@ public class LandingPage extends BasicPageObject  {
 	public void clickConfigure(){
 		getElement(menuConfigure).click();		
 	}
+	
+	public void clickEditBtnOfAPP(String NameOfSP){
+		System.out.println("//td[contains(text(),'"+NameOfSP+"')]/following-sibling::td[2]//a[1]");
+		getElement(defineEelement(UIType.Xpath,"//td[contains(text(),'"+NameOfSP+"')]/following-sibling::td[2]//a[1]")).click();		
+	}
+	
+	public void clickLnkSPList(){
+		getElement(lnkSPList).click();		
+	}
+	
+	public void clickMenu_Inbound_Authentication_Configuration(){
+		getElement(menuInbound_Authentication_Configuration).click();		
+	}
+	
+	public void clickMenuOAuth_OpenID_Connect_Configuration(){
+		getElement(menuOAuth_OpenID_Connect_Configuration).click();		
+	}
+	
+	public void clickBtnEdit_OAuth_OpenID_Connect_Configuration(){
+		getElement(btnEdit_OAuth_OpenID_Connect_Configuration).click();		
+	}
+	
+	public void clearTxtCallBack(){
+		getElement(txtCallBack).clear();		
+	}
+	
+	public void editTxtCallBack(String callback){
+		getElement(txtCallBack).clearAndSendkeys(callback);		
+	}
+	
+	public void ClickBtnUpdate(){
+		getElement(btnUpdate).click();		
+	}
+	
+	
 	
 	public boolean isConfigurePage(String pageTitle) throws Exception {
 		flag = false;
