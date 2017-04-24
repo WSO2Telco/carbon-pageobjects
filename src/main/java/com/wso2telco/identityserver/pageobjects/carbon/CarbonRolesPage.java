@@ -385,10 +385,10 @@ public class CarbonRolesPage extends BasicPageObject {
 	 */
 	public void enterAggrigatorRoleName(String rolename) throws Exception{
 		logger.debug("Entering aggrigator role name");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		typeTextBox(txtSearchRole, rolename);
 		//getElement(txtSearchRole).clearAndSendkeys(rolename);
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		logger.debug("Entered aggrigator role name");
 	}
 	
@@ -401,7 +401,7 @@ public class CarbonRolesPage extends BasicPageObject {
 	public void clickOK() throws InterruptedException{
 		logger.debug("Clicking on OK");
 		getElement(btnOK).click();
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		logger.debug("Clicked on OK");
 	}
 

@@ -34,7 +34,7 @@ public class BasicPageObject extends PageBase {
 	public void typeTextBox(WebPelement textbox, String value) throws Exception {
 
 		getElement(textbox).clearAndSendkeys(value);
-		String enteredValue = textbox.getAttribute("value");
+		/*String enteredValue = textbox.getAttribute("value");
 		try {
 			if (!(enteredValue.equalsIgnoreCase(value))) {
 				do {
@@ -45,7 +45,7 @@ public class BasicPageObject extends PageBase {
 		} catch (Exception e) {
 			e.getMessage();
 			throw new Exception("Exception While Validating User name 'isUserName()'" + e.getLocalizedMessage());
-		}
+		}*/
 	}
 	
 
