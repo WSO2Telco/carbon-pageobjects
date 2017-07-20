@@ -1,26 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.wso2telco.identityserver.pageobjects</groupId>
-  <artifactId>identity-server-pageobjects</artifactId>
-  <packaging>jar</packaging>
-  <version>2.0.0-SNAPSHOT</version>
-  <name>identity-server-pageobjects</name>
-  <url>http://maven.apache.org</url>
-<properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.wso2telco.test</groupId>
+	<artifactId>carbon-pageobjects</artifactId>
+	<packaging>jar</packaging>
+	<version>2.0.0-SNAPSHOT</version>
+	<name>carbon-pageobjects</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-<!-- 		<resources> -->
-<!-- 			<resource> -->
-<!-- 				<directory>src/resources</directory> -->
-<!-- 				<excludes> -->
-<!-- 					<exclude>**/*.java</exclude> -->
-<!-- 				</excludes> -->
-<!-- 			</resource> -->
-<!-- 		</resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -56,10 +47,67 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-				<dependency>
-			<groupId>com.wso2telco</groupId>
+		<dependency>
+			<groupId>com.wso2telco.test</groupId>
 			<artifactId>uitest-framework</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
+	<scm>
+		<url>https://github.com/Nuwan-Walisundara/carbon-pageobjects.git</url>
+		<developerConnection>scm:git:https://github.com/Nuwan-Walisundara/carbon-pageobjects.git</developerConnection>
+		<connection>scm:git:https://github.com/Nuwan-Walisundara/carbon-pageobjects.git</connection>
+		<tag>HEAD</tag>
+	</scm>
+
+	 <repositories>
+        <repository>
+            <id>wso2telco-releases</id>
+            <name>WSO2Telco internal Repository</name>
+            <url>http://maven.wso2telco.com/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2Telco-snapshots</id>
+            <name>WSO2 TELCO Internal Snapshot Repository</name>
+            <url>http://maven.wso2telco.com/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2telco-public</id>
+            <name>WSO2 telco public Repository</name>
+            <url>http://maven.wso2telco.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+    
+	<distributionManagement>
+		<snapshotRepository>
+			<id>wso2Telco.snapshots</id>
+			<name>Snapshot repo</name>
+			<url>file:///projects/nexus/content/repositories/snapshots</url>
+			<!-- url>http://maven.wso2telco.com/nexus/content/repositories/snapshots</url -->
+		</snapshotRepository>
+		<!-- Publish the versioned releases here -->
+		<repository>
+			<id>wso2telco.releases</id>
+			<name>release repo</name>
+			<url>http:///projects/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+
 </project>
