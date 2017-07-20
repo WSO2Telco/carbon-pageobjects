@@ -115,7 +115,7 @@
 		<repository>
 			<id>wso2telco.releases</id>
 			<name>release repo</name>
-			<url>http:///projects/nexus/content/repositories/releases/</url>
+			<url>file:///projects/nexus/content/repositories/releases/</url>
 		</repository>
 	</distributionManagement>
 
