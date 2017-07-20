@@ -3,7 +3,7 @@
 	<groupId>com.wso2telco.test</groupId>
 	<artifactId>carbon-pageobjects</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>carbon-pageobjects</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -65,7 +65,7 @@
 		<url>https://github.com/WSO2Telco/carbon-pageobjects.git</url>
 		<developerConnection>scm:git:https://github.com/WSO2Telco/carbon-pageobjects.git</developerConnection>
 		<connection>scm:git:https://github.com/WSO2Telco/carbon-pageobjects.git</connection>
-		<tag>HEAD</tag>
+		<tag>v1.0.0</tag>
 	</scm>
 
 	<repositories>
