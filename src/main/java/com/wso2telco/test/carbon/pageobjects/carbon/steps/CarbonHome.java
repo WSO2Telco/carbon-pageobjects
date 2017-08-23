@@ -8,7 +8,7 @@ import com.wso2telco.identityserver.pageobjects.CarbonLeftNav;
 import com.wso2telco.identityserver.pageobjects.carbon.CarbonHomePage;
 import com.wso2telco.identityserver.pageobjects.carbon.CarbonLoginPage;
 import com.wso2telco.identityserver.pageobjects.carbon.CarbonUserRoles;
-import com.wso2telco.test.carbon.pageobjects.carbon.steps.BasicTestObject;
+import com.wso2telco.test.framework.util.ConfigReader;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -42,15 +42,15 @@ public class CarbonHome extends BasicTestObject {
 	@When("^I enter identity server username credentials$")
 	public void i_enter_identity_server_username_credentials() throws Throwable {
 		CarbonLoginPage carbonLogin = new CarbonLoginPage(driver);
-		carbonLogin.setCarbonUsername(getAdminUser());
-		carbonLogin.setCarbonPassword(getAdminPwd());
+		carbonLogin.setCarbonUsername(ConfigReader.getAdminUser());
+		carbonLogin.setCarbonPassword(ConfigReader.getAdminPwd());
 	}
 
 	@When("^I click on identity server sign in$")
 	public void i_click_on_identity_server_sign_in() throws Throwable {
 		CarbonLoginPage carbonLogin = new CarbonLoginPage(driver);
 		carbonLogin.clickCarbonLogin();
-		Thread.sleep(5000);
+		Thread.sleep(sleepTime/4);
 	}
 
 	@Then("^I should see the ids Home page header as \"([^\"]*)\"$")

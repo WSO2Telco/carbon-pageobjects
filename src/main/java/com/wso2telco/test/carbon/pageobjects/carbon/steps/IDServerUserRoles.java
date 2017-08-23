@@ -5,6 +5,7 @@ import org.junit.Assert;
 import com.wso2telco.identityserver.pageobjects.CarbonLeftNav;
 import com.wso2telco.identityserver.pageobjects.carbon.CarbonRolesPage;
 import com.wso2telco.identityserver.pageobjects.carbon.CarbonUserRoles;
+import com.wso2telco.test.framework.util.ConfigReader;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -108,7 +109,7 @@ public class IDServerUserRoles extends BasicTestObject {
 	@When("^I click carbon server User Management Users link$")
 	public void i_click_identity_server_User_Management_Users_link() throws Throwable {
 		CarbonUserRoles carbonUserRolesPage = new CarbonUserRoles(driver);
-		Thread.sleep(sleepTime);
+		Thread.sleep(sleepTime/4);
 		carbonUserRolesPage.clickUsersLink();
 	}
 
@@ -420,19 +421,20 @@ public class IDServerUserRoles extends BasicTestObject {
 	@When("^I clear existing users \"([^\"]*)\"$")
 	public void i_clear_existing_users(String arg1) throws Throwable {
 		CarbonRolesPage carbonRoles = new CarbonRolesPage(driver);
-        carbonRoles.enterUsersName(config.getValue( arg1 ));
+        
+		carbonRoles.enterUsersName(ConfigReader.getUser(arg1));
 		carbonRoles.clickSearchUsers();
 
 		if (carbonRoles.isUserNameVisible()) {
-			carbonRoles.clickDeleteUser(config.getValue( arg1 ));
+			carbonRoles.clickDeleteUser(ConfigReader.getUser(arg1));
 			carbonRoles.clickYes();
-			Thread.sleep(2000);
+			Thread.sleep(sleepTime/3);
 			carbonRoles.clickOK();
-			Thread.sleep(2000);
+			Thread.sleep(sleepTime/3);
 		} else {
-			Thread.sleep(2000);
+			Thread.sleep(sleepTime/3);
 			carbonRoles.clickOK();
-			Thread.sleep(2000);
+			Thread.sleep(sleepTime/3);
 		}
 	} 
 }

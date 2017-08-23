@@ -42,22 +42,6 @@ abstract  public class BasicTestObject extends TestBase {
 	
 	public static String projectPath = System.getProperty("user.dir");
 	
-	public String getAdminUser() {
-		return config.getValue("AdminUser");
-		
-	}
-	public String getAdminPwd() {
-		return config.getValue("AdminUser_PWD");
-		
-	}
-	public String getUser(String userId) {
-		return config.getValue(userId.trim());
-		
-	}
-	public String getPwd(String userId) {
-		return config.getValue(userId+"_PWD");
-		
-	}
 	public void initialize() throws Exception {
 		if (!isInitialized) {
 			// Initialize Logs
